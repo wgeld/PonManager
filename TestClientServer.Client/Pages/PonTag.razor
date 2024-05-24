@@ -7,8 +7,8 @@
 <h1>Pon Light Up - Westfield</h1>
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
 
 
     <div class="form-group">
@@ -82,17 +82,14 @@
     {
         _showConfirmationModal = false;
         var url = $"formdata?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={_currentEntry.Splitter}";
-        var response = await Http.PostAsync(url, null); // No content is sent in the body.
+        var response = await Http.PostAsync(url, null); 
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("Submission successful.");
-            // Optionally clear the form or redirect
         }
         else
         {
             Console.WriteLine("Submission failed.");
-            // Optionally display an error message
         }
     }
-
 }
