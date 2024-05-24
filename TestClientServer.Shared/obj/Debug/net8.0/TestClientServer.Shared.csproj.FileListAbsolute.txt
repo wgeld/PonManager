@@ -1,0 +1,11 @@
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\bin\Debug\net8.0\TestClientServer.Shared.deps.json
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\bin\Debug\net8.0\TestClientServer.Shared.dll
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\bin\Debug\net8.0\TestClientServer.Shared.pdb
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.AssemblyInfoInputs.cache
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.AssemblyInfo.cs
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.csproj.CoreCompileInputs.cache
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.dll
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\refint\TestClientServer.Shared.dll
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\TestClientServer.Shared.pdb
+C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Shared\obj\Debug\net8.0\ref\TestClientServer.Shared.dll
