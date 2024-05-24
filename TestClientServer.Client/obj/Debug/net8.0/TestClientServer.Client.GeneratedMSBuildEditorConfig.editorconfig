@@ -26,16 +26,12 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/PonTag.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9uVGFnLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/_Imports.razor]

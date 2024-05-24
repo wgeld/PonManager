@@ -1,4 +1,4 @@
-namespace TestClientServer.Shared
+namespace TestClientServer.Shared.Models
 {
     public class WeatherForecast
     {
