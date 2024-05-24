@@ -1,30 +1,29 @@
 ﻿@page "/pontag"
 @using TestClientServer.Shared.Models
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <PageTitle>PonLightUp </PageTitle>
 
-<h1>Pon Light Up - Westfield</h1>
+<h1>Input PON Information</h1>
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
-
-
     <div class="form-group">
-        <label for="olt">Olt:</label>
+        <label for="olt">OLT:</label>
         <InputNumber id="olt" @bind-Value="_currentEntry.Olt" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="lt">Lt:</label>
+        <label for="lt">LT:</label>
         <InputNumber id="lt" @bind-Value="_currentEntry.Lt" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="pon">Pon:</label>
+        <label for="pon">PON:</label>
         <InputNumber id="pon" @bind-Value="_currentEntry.Pon" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="fsa">Fsa:</label>
+        <label for="fsa">FSA:</label>
         <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="form-control" />
     </div>
     <div class="form-group">
@@ -73,7 +72,7 @@
     private readonly FormData _currentEntry = new();
     private bool _showConfirmationModal = false;
 
-    private void ShowConfirmationModal()
+    private void   ShowConfirmationModal()
     {
         _showConfirmationModal = true;
     }
@@ -85,11 +84,11 @@
         var response = await Http.PostAsync(url, null); 
         if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("Submission successful.");
+            NavigationManager.NavigateTo("/confirmation");
         }
         else
         {
-            Console.WriteLine("Submission failed.");
+            NavigationManager.NavigateTo("/error");
         }
     }
 }
