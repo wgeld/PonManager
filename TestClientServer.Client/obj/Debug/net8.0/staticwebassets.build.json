@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wxCPkEKgdEa2QCNkUo4qxP0MvJ5jFzfPZNhiB57k7y8=",
+  "Hash": "huhD3isJgDq63nnKc4lEgAxnLi/3KVNpT1A0PqxKDLY=",
   "Source": "TestClientServer.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9059,25 +9059,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
-    },
-    {
-      "Identity": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\sample-data\\weather.json",
-      "SourceId": "TestClientServer.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "sample-data/weather.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
     }
   ]
 }

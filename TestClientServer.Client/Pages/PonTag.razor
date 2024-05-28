@@ -4,20 +4,20 @@
 @inject NavigationManager NavigationManager
 
 <PageTitle>PonLightUp</PageTitle>
-<h2>Enter Pon Details</h2>
+<h2>Enter PON Details</h2>
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="fsa">FSA:</label>
-        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-form-control" />
+        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
     </div>
     
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="olt">OLT:</label>
-        <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-form-control">
+        <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-input">
             @foreach (var option in _oltOptions)
             {
                 <option value="@option">@option</option>
@@ -25,9 +25,9 @@
         </InputSelect>
     </div>
     
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="lt">LT:</label>
-        <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-form-control">
+        <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-input">
             @foreach (var option in _ltOptions)
             {
                 <option value="@option">@option</option>
@@ -35,9 +35,9 @@
         </InputSelect>
     </div>
     
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="pon">PON:</label>
-        <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-form-control">
+        <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-input">
             @foreach (var option in _ponOptions)
             {
             <option value="@option">@option</option>
@@ -45,9 +45,9 @@
         </InputSelect>
     </div>
 
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="splitter">Splitter:</label>
-        <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-form-control">
+        <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-input">
             @foreach (var option in _splitterOptions)
             {
                 <option value="@option">@option</option>
@@ -55,9 +55,9 @@
         </InputSelect>
     </div>
 
-    <div class="form-group">
+    <div class="form-group half-width-form-control">
         <label for="town">Town:</label>
-        <InputSelect id="town" @bind-Value="_currentEntry.Town" class="half-width-form-control">
+        <InputSelect id="town" @bind-Value="_currentEntry.Town" class="half-width-input">
             @foreach (var option in _townOptions)
             {
             <option value="@option">@option</option>
@@ -82,10 +82,10 @@
                 </button>
             </div>
             <div class="modal-body">
+                <p>FSA: @_currentEntry.Fsa</p>
                 <p>OLT: @_currentEntry.Olt</p>
                 <p>LT: @_currentEntry.Lt</p>
                 <p>PON: @_currentEntry.Pon</p>
-                <p>FSA: @_currentEntry.Fsa</p>
                 <p>Splitter: @_currentEntry.Splitter</p>
                 <p>Town: @_currentEntry.Town</p>
             </div>
@@ -137,10 +137,34 @@
 }
 <style>
     .half-width-form-control {
-        display: grid; /* Use grid layout */
-        grid-template-columns: auto 1fr; /* Define columns: label, input */
-        width: 50%;
-        gap: 5px; /* Add gap between label and input */
-        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin-top: 0.5rem;
+        background: #fff;
+        padding: 0.5rem;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .half-width-form-control label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .half-width-form-control input {
+        padding: 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s, outline 0.3s, box-shadow 0.3s;
+    }
+
+    .half-width-form-control input:focus {
+        border-color: #28a745;
+        outline: 2px solid #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
     }
 </style>
+
+
