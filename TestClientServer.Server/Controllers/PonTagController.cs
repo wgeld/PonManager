@@ -14,15 +14,17 @@ public class PonTagController(
     : ControllerBase
 {
     [HttpPost]
-        public async Task<IActionResult> GetPonDetailsAsync(int olt, int lt, int pon, string town, string fdh, string splitter)
+        public async Task<IActionResult> PostPonDetailsAsync(int olt, int lt, int pon, string town, string fdh, string splitter)
     {
         try
         {
             var checkResult = await CheckAsp2Path(olt, lt, pon, town, fdh, splitter);
-            if (checkResult is OkObjectResult) return Ok("PON Path already exists in AvailableSignalPorts2.");
+            if (checkResult is OkObjectResult) 
+                return Ok("PON Path already exists in AvailableSignalPorts2.");
 
             var createResult = await CreateAsp2Path(olt, lt, pon, town, fdh, splitter);
-            if (createResult is not OkObjectResult) return BadRequest("Error creating PON path");
+            if (createResult is not OkObjectResult) 
+                return BadRequest("Error creating PON path");
 
             var newRecords = await GenerateAndAddEquipmentRecords(olt, lt, pon, town, fdh, splitter);
             return Ok(new { Records = newRecords, Message = "PON details processed successfully." });

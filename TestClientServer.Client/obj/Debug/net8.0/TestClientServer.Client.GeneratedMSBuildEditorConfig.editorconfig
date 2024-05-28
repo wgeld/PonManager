@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/PonExists.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9uRXhpc3RzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/PonTag.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9uVGFnLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

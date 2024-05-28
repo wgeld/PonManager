@@ -1,0 +1,19 @@
+﻿@page "/PonExists"
+@inject NavigationManager Navigation
+
+<PageTitle>PON Path Exists</PageTitle>
+
+<h3>This PON path already exists in AvailableSignalPorts2.</h3>
+
+<div class="alert alert-warning" role="alert">
+    The PON path you are trying to create already exists and cannot be duplicated.
+</div>
+
+<button class="btn btn-primary" @onclick="GoBack">Try Again</button>
+
+@code {
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/pontag");
+    }
+}
