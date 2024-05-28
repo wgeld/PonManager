@@ -4,29 +4,20 @@
 @inject NavigationManager NavigationManager
 
 <PageTitle>PonLightUp</PageTitle>
+<h2>Enter Pon Details</h2>
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     
     <div class="form-group">
-        <label for="town">Town:</label>
-        <InputSelect id="town" @bind-Value="_currentEntry.Town" class="form-control">
-            @foreach (var option in _townOptions)
-            {
-            <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-    
-    <div class="form-group">
         <label for="fsa">FSA:</label>
-        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="form-control" />
+        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-form-control" />
     </div>
     
     <div class="form-group">
         <label for="olt">OLT:</label>
-        <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="form-control">
+        <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-form-control">
             @foreach (var option in _oltOptions)
             {
                 <option value="@option">@option</option>
@@ -36,7 +27,7 @@
     
     <div class="form-group">
         <label for="lt">LT:</label>
-        <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="form-control">
+        <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-form-control">
             @foreach (var option in _ltOptions)
             {
                 <option value="@option">@option</option>
@@ -46,7 +37,7 @@
     
     <div class="form-group">
         <label for="pon">PON:</label>
-        <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="form-control">
+        <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-form-control">
             @foreach (var option in _ponOptions)
             {
             <option value="@option">@option</option>
@@ -56,8 +47,18 @@
 
     <div class="form-group">
         <label for="splitter">Splitter:</label>
-        <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="form-control">
+        <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-form-control">
             @foreach (var option in _splitterOptions)
+            {
+                <option value="@option">@option</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="town">Town:</label>
+        <InputSelect id="town" @bind-Value="_currentEntry.Town" class="half-width-form-control">
+            @foreach (var option in _townOptions)
             {
             <option value="@option">@option</option>
             }
@@ -121,6 +122,7 @@
     {
         _showConfirmationModal = false;
         var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter;
+        
         var url = $"formdata?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
         var response = await Http.PostAsync(url, null); 
         if (response.IsSuccessStatusCode)
@@ -131,5 +133,14 @@
         {
             NavigationManager.NavigateTo("/error");
         }
-    }
+    } 
 }
+<style>
+    .half-width-form-control {
+        display: grid; /* Use grid layout */
+        grid-template-columns: auto 1fr; /* Define columns: label, input */
+        width: 50%;
+        gap: 5px; /* Add gap between label and input */
+        margin-top: 5px;
+    }
+</style>
