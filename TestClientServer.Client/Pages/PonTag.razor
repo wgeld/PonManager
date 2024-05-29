@@ -5,11 +5,17 @@
 
 <PageTitle>PonLightUp</PageTitle>
 
-<h2>Enter PON Details</h2>
+@*******************************************************************/
+/*********** Display Form for PON Tag Submission *******************/
+/*******************************************************************@
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
+
+    <div class="half-width-form-control">
+        <h2>Enter PON Details:</h2>
+    </div>
     
     <div class="form-group half-width-form-control">
         <label for="fsa">FSA:</label>
@@ -71,24 +77,28 @@
     </div>
 </EditForm>
 
+@********************************************************************/
+/*********** User Submission Confirmation Modal ********************/
+/*******************************************************************@
+
 @if (_showConfirmationModal)
 {
     <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Confirm Submission</h4>
+                    <h2 class="modal-title">Confirm Submission</h2>
                     <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>FSA: @_currentEntry.Fsa</p>
-                    <p>OLT: @_currentEntry.Olt</p>
-                    <p>LT: @_currentEntry.Lt</p>
-                    <p>PON: @_currentEntry.Pon</p>
-                    <p>Splitter: @_currentEntry.Splitter</p>
-                    <p>Town: @_currentEntry.Town</p>
+                    <h4>FSA: @_currentEntry.Fsa</h4>
+                    <h4>OLT: @_currentEntry.Olt</h4>
+                    <h4>LT: @_currentEntry.Lt</h4>
+                    <h4>PON: @_currentEntry.Pon</h4>
+                    <h4>Splitter: @_currentEntry.Splitter</h4>
+                    <h4>Town: @_currentEntry.Town</h4>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Cancel</button>
@@ -101,22 +111,29 @@
 
 @code {
     private readonly FormData _currentEntry = new();
+    private bool _showConfirmationModal;
     
+    /*********************************************************************/
+    /*********** Pre-set Field Selections for User Form *****************/
+    /*******************************************************************/
+        
     private readonly List<int> _oltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
     private readonly List<int> _ltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
     private readonly List<int> _ponOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
+    private readonly List<string> _townOptions = [" ", "Westfield"];
     private readonly List<string> _splitterOptions = [" ", "1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A",
                                                         "9A", "10A", "11A", "12A", "13A", "14A", "15A", "16A",
                                                         "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B",
                                                         "9B", "10B", "11B", "12B", "13B", "14B", "15B", "16B"];
-
-    private readonly List<string> _townOptions = [" ", "Westfield"];
-    private bool _showConfirmationModal;
-
+    
     private void   ShowConfirmationModal()
     {
         _showConfirmationModal = true;
     }
+    
+    /*********************************************************************/
+    /***** Pass Variables to Server Controller After Confirmation *******/
+    /*******************************************************************/
 
     private async Task ConfirmAndSubmit()
     {
@@ -143,7 +160,22 @@
         }
     } 
 }
+    @*********************************************************************/
+    /********************* Styling for Page Layout  *********************/
+    /*******************************************************************@
+
 <style>
+    
+    h2 {
+        font-size: 24px; 
+        color: #333; 
+        text-align: left; 
+        padding: 5px 0;
+        font-weight: bold;
+        font-family: 'Arial', sans-serif; 
+        margin-top: 5px; 
+    }
+    
     .half-width-form-control {
         display: flex;
         flex-direction: column;
@@ -185,7 +217,6 @@
         outline: 2px solid #28a745;
         box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
     }
-
 </style>
 
 

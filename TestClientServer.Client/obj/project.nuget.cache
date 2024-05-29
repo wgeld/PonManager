@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TErQBZALjVfyUY4ehOcbUeIqUNElK55VI2wxLrAUvx02A6QkDoZ3Po5tG/bxSuy76ro7rAiy1N1AztV9Npethw==",
+  "dgSpecHash": "7yhiVwASND/pcwGA/fD/MWM+/qf8uq9zK328697OZYDtytTBsa7I+ITRnJ7z4jJf+WNqgHoBwF8BV4mXEbkqUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\TestClientServer.Client.csproj",
   "expectedPackageFiles": [
@@ -49,8 +49,8 @@
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.35.0\\microsoft.identitymodel.tokens.6.35.0.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.jsinterop\\8.0.5\\microsoft.jsinterop.8.0.5.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.jsinterop.webassembly\\8.0.5\\microsoft.jsinterop.webassembly.8.0.5.nupkg.sha512",
-    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.5\\microsoft.net.illink.tasks.8.0.5.nupkg.sha512",
-    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.5\\microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
+    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.6\\microsoft.net.illink.tasks.8.0.6.nupkg.sha512",
+    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.6\\microsoft.net.sdk.webassembly.pack.8.0.6.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
@@ -82,7 +82,7 @@
     "C:\\Users\\ddagostino\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.5.nupkg.sha512"
+    "C:\\Users\\ddagostino\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.6\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.6.nupkg.sha512"
   ],
   "logs": []
 }
