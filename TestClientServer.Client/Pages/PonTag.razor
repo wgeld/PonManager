@@ -83,30 +83,53 @@
 
 @if (_showConfirmationModal)
 {
-    <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Confirm Submission</h2>
-                    <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4>FSA: @_currentEntry.Fsa</h4>
-                    <h4>OLT: @_currentEntry.Olt</h4>
-                    <h4>LT: @_currentEntry.Lt</h4>
-                    <h4>PON: @_currentEntry.Pon</h4>
-                    <h4>Splitter: @_currentEntry.Splitter</h4>
-                    <h4>Town: @_currentEntry.Town</h4>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Cancel</button>
-                    <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
-                </div>
+<div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirm Submission</h2>
+                <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td><strong>FSA:</strong></td>
+                            <td>@_currentEntry.Fsa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OLT:</strong></td>
+                            <td>@_currentEntry.Olt</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LT:</strong></td>
+                            <td>@_currentEntry.Lt</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PON:</strong></td>
+                            <td>@_currentEntry.Pon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Splitter:</strong></td>
+                            <td>@_currentEntry.Splitter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Town:</strong></td>
+                            <td>@_currentEntry.Town</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Cancel</button>
+                <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
             </div>
         </div>
     </div>
+</div>
+
 }
 
 @code {
@@ -165,8 +188,49 @@
     /*******************************************************************@
 
 <style>
-    
-    h2 {
+    .modal-header {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table tbody + tbody {
+        border-top: 2px solid #dee2e6;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .btn {
+        margin-left: 10px;
+    }
+
+h2 {
         font-size: 24px; 
         color: #333; 
         text-align: left; 
