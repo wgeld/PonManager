@@ -5,9 +5,9 @@
 
 <PageTitle>PonLightUp</PageTitle>
 
-@*******************************************************************/
-/*********** Display Form for PON Tag Submission *******************/
-/*******************************************************************@
+    @*******************************************************************/
+    /*********** Display Form for PON Tag Submission *******************/
+    /*******************************************************************@
 
 <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
     <DataAnnotationsValidator/>
@@ -77,9 +77,9 @@
     </div>
 </EditForm>
 
-@********************************************************************/
-/*********** User Submission Confirmation Modal ********************/
-/*******************************************************************@
+    @********************************************************************/
+    /*********** User Submission Confirmation Modal ********************/
+    /*******************************************************************@
 
 @if (_showConfirmationModal)
 {
@@ -87,7 +87,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Confirm Submission</h2>
+                <h2 class="modal-title">Confirm Submission:</h2>
                 <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
                     <span>&times;</span>
                 </button>
@@ -137,7 +137,7 @@
     private bool _showConfirmationModal;
     
     /*********************************************************************/
-    /*********** Pre-set Field Selections for User Form *****************/
+    /*********** Pre-set Field Selections for Input Form ****************/
     /*******************************************************************/
         
     private readonly List<int> _oltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
