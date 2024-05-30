@@ -1,14 +1,80 @@
 ﻿@page "/confirmation"
+@using System.Text.Json
+@using System.Web
+@using TestClientServer.Shared.Models
 @layout MainLayout
+@inject HttpClient Http
+@inject NavigationManager NavigationManager;
+
 <div class="container mt-4">
+    <div class="mt-3">
+        <a href="/" class="btn btn-primary">Return Home</a>
+    </div>
+    <br/>
     <div class="alert alert-success">
         <strong>Success!</strong> The Pon Path information has been successfully created.
     </div>
+
     <div class="mt-3">
-        <a href="/" class="btn btn-primary">Return Home</a>  
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Equipment Class</th>
+                <th>Equipment ID</th>
+                <th>FDH</th>
+                <th>Splitter Card</th>
+                <th>Splitter Tail</th>
+                <th>Olt</th>
+                <th>Lt</th>
+                <th>Pon</th>
+                <th>Ont</th>
+                <th>Id</th>
+                <th>Town</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @{
+                System.Diagnostics.Debug.Assert(_equipmentRecords != null, nameof(_equipmentRecords) + " != null");
+            }
+            @foreach (var equipment in _equipmentRecords)
+            {
+                <tr>
+                    <td>@equipment.EquClass</td>
+                    <td>@equipment.EquId</td>
+                    <td>@equipment.Fdh</td>
+                    <td>@equipment.SplitterCard</td>
+                    <td>@equipment.SplitterTail</td>
+                    <td>@equipment.Olt</td>
+                    <td>@equipment.Lt</td>
+                    <td>@equipment.Pon</td>
+                    <td>@equipment.Ont</td>
+                    <td>@equipment.Id</td>
+                    <td>@equipment.Town</td>
+                </tr>
+            }
+            </tbody>
+        </table>
     </div>
 </div>
 
 @code {
-    
+    private List<WcfMgmtEquipment>? _equipmentRecords = [];
+
+    protected override async void OnInitialized()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var splitter = HttpUtility.ParseQueryString(uri.Query).Get("splitter"); 
+        var fsa = HttpUtility.ParseQueryString(uri.Query).Get("fsa");
+        
+        var url = $"formdata/GetPon?&fdh={fsa}&splitterCard={splitter}";
+        var response = await Http.GetAsync(url);
+        if (response.IsSuccessStatusCode)
+        {
+            _equipmentRecords = await JsonSerializer.DeserializeAsync<List<WcfMgmtEquipment>>(
+                await response.Content.ReadAsStreamAsync(),
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true}
+            );
+        }
+    }
 }

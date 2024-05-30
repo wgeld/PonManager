@@ -24,4 +24,5 @@ public class FormData
     public int Pon { get; set; }
     public int Lt { get; set; }
     public string Splitter { get; set; }
+    
 }

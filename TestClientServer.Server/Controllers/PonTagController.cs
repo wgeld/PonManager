@@ -16,7 +16,7 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Master Controller. PON Form Data Passes Here ***********/
         /*******************************************************************/
-        [HttpPost]
+        [HttpPost("PostPon")]
         public async Task<IActionResult> PostPonDetailsAsync(int olt, int lt, int pon, string town, string fdh, string splitter)
         {
             try
@@ -36,6 +36,37 @@ namespace TestClientServer.Server.Controllers;
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request: " + ex.Message);
             }
+        }
+        /*********************************************************************/
+        /*********** Get Newly Created Equipment Records from Table *********/
+        /*******************************************************************/
+        [HttpGet("GetPon")]
+        public async Task<IActionResult> GetNewEquipmentRecords([FromQuery]string fdh, [FromQuery]string splitterCard)
+        {
+            try
+            {
+                var newEquipId = CreateNewEquipId(fdh, splitterCard);
+                var equipment = await equipmentService.GetEquipmentByEquipId(newEquipId);
+
+                if (equipment == null)
+                {
+                    return NotFound("Equipment not found.");
+                }
+
+                var createdDate = equipment.CreatedDate;
+                var equipmentRecords = await equipmentService.GetEquipmentByCreatedDate(createdDate);
+                return Ok(equipmentRecords);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"An error occured: {ex.Message}");
+            }
+        }
+
+        public string CreateNewEquipId(string fdh, string splitterCard)
+        {
+            var newEquipId =  utilityService.CreateEquipIdFdh(fdh, splitterCard, 1);
+            return newEquipId;
         }
         
         /*********************************************************************/

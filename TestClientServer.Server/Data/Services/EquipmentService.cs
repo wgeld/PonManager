@@ -27,4 +27,17 @@ public class EquipmentService : IEquipmentService
         await _context.Database.ExecuteSqlRawAsync(enableTriggerSql);
 
     }
+    public async Task<WcfMgmtEquipment> GetEquipmentByEquipId(string equipId)
+    {
+        return await _context.WcfMgmtEquipments
+            .Where(e => e.EquId == equipId)
+            .FirstOrDefaultAsync() ?? throw new InvalidOperationException();
+    }
+
+    public async Task<List<WcfMgmtEquipment>> GetEquipmentByCreatedDate(DateTime? createdDate)
+    {
+        return await _context.WcfMgmtEquipments
+            .Where(e => e.CreatedDate == createdDate)
+            .ToListAsync();
+    }
 }

@@ -141,9 +141,9 @@
     /*********** Pre-set Field Selections for Input Form ****************/
     /*******************************************************************/
         
-    private readonly List<int> _oltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
-    private readonly List<int> _ltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
-    private readonly List<int> _ponOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
+    private readonly List<int> _oltOptions = [0, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
+    private readonly List<int> _ltOptions = [0, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
+    private readonly List<int> _ponOptions = [0, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
     private readonly List<string> _townOptions = [" ", "Westfield"];
     private readonly List<string> _splitterOptions = [" ", "1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A",
                                                         "9A", "10A", "11A", "12A", "13A", "14A", "15A", "16A",
@@ -164,7 +164,7 @@
         _showConfirmationModal = false;
         var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter;
         
-        var url = $"formdata?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
+        var url = $"formdata/PostPon?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
         var response = await Http.PostAsync(url, null); 
         if (response.IsSuccessStatusCode)
         {
@@ -175,7 +175,8 @@
             }
             else
             {
-                NavigationManager.NavigateTo("/confirmation");
+                var confirmationUrl = $"/confirmation?fsa={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}";
+                NavigationManager.NavigateTo(confirmationUrl);
             }
         }
         else
@@ -305,12 +306,10 @@ h2 {
         white-space: nowrap;
         cursor: pointer;
     }
-
     .button-64:active,
     .button-64:hover {
         outline: 0;
     }
-
     .button-64 span {
         background-color: rgb(89, 43, 131);
         padding: 16px 24px;
@@ -319,7 +318,6 @@ h2 {
         height: 100%;
         transition: 300ms;
     }
-
     .button-64:hover span {
         background: none;
     }

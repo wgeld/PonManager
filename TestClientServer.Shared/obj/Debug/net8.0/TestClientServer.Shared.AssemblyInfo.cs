@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestClientServer.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcb0793c5a85606b8dec517e1097a941ef916290")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f93e0b8df8d1e8b437ddc0d1fa951b0f62209f38")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestClientServer.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestClientServer.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
