@@ -10,8 +10,9 @@ main[b-5i0jcabpgl] {
 }
 
 .sidebar[b-5i0jcabpgl] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: #d6d5d5; /* Set the background to solid white */
 }
+
 
 .top-row[b-5i0jcabpgl] {
     background-color: #f7f7f7;
