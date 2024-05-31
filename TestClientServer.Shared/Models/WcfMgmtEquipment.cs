@@ -1,5 +1,7 @@
-﻿namespace TestClientServer.Shared.Models;
-public partial class WcfMgmtEquipment
+﻿using System.Collections;
+
+namespace TestClientServer.Shared.Models;
+public class WcfMgmtEquipment
 {
     public string LocationId { get; set; }
 
@@ -56,4 +58,5 @@ public partial class WcfMgmtEquipment
     public string Town { get; set; }
 
     public string ContainerId { get; set; }
+    
 }

@@ -12,23 +12,23 @@
     </div>
     <br/>
     <div class="alert alert-success">
-        <strong>Success!</strong> The Pon Path information has been successfully created.
+        <strong>Success!</strong> The Pon Path information has been successfully created. The created results are below: 
     </div>
 
     <div class="mt-3">
         <table class="table">
             <thead>
             <tr>
-                <th>Equipment Class</th>
+                <th>Class</th>
+                <th>ID</th>
                 <th>Equipment ID</th>
                 <th>FDH</th>
-                <th>Splitter Card</th>
-                <th>Splitter Tail</th>
-                <th>Olt</th>
-                <th>Lt</th>
-                <th>Pon</th>
-                <th>Ont</th>
-                <th>Id</th>
+                <th>Card</th>
+                <th>Tail</th>
+                <th>OLT</th>
+                <th>LT</th>
+                <th>PON</th>
+                <th>ONT</th>
                 <th>Town</th>
             </tr>
             </thead>
@@ -41,6 +41,7 @@
             {
                 <tr>
                     <td>@equipment.EquClass</td>
+                    <td>@equipment.Id</td>
                     <td>@equipment.EquId</td>
                     <td>@equipment.Fdh</td>
                     <td>@equipment.SplitterCard</td>
@@ -49,7 +50,6 @@
                     <td>@equipment.Lt</td>
                     <td>@equipment.Pon</td>
                     <td>@equipment.Ont</td>
-                    <td>@equipment.Id</td>
                     <td>@equipment.Town</td>
                 </tr>
             }
@@ -59,22 +59,55 @@
 </div>
 
 @code {
+
+    
     private List<WcfMgmtEquipment>? _equipmentRecords = [];
 
-    protected override async void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         var uri = new Uri(NavigationManager.Uri);
-        var splitter = HttpUtility.ParseQueryString(uri.Query).Get("splitter"); 
-        var fsa = HttpUtility.ParseQueryString(uri.Query).Get("fsa");
+        var query = HttpUtility.ParseQueryString(uri.Query);
+        var splitter = query.Get("splitter"); 
+        var fsa = query.Get("fdh");
         
-        var url = $"formdata/GetPon?&fdh={fsa}&splitterCard={splitter}";
+        // Construct the URL with proper parameter inclusion
+        var url = $"formdata/GetPon?fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
         var response = await Http.GetAsync(url);
+        
         if (response.IsSuccessStatusCode)
         {
             _equipmentRecords = await JsonSerializer.DeserializeAsync<List<WcfMgmtEquipment>>(
                 await response.Content.ReadAsStreamAsync(),
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true}
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
+        }
+        else
+        {
+            // Handle the case where the HTTP request fails
+            _equipmentRecords = new List<WcfMgmtEquipment>(); // Ensure the list is initialized to prevent null reference exceptions
+            Console.Error.WriteLine("Failed to load equipment records");
         }
     }
 }
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1em;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .table tr:hover {
+        background-color: #ddd;
+    }
+</style>

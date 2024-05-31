@@ -1,6 +1,6 @@
 ﻿namespace TestClientServer.Shared.Models;
 
-public partial class AvailableSignalPorts2
+public class AvailableSignalPorts2
 {
     public int Id { get; set; }
 

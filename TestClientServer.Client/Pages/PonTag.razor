@@ -175,8 +175,8 @@
             }
             else
             {
-                var confirmationUrl = $"/confirmation?fsa={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}";
-                NavigationManager.NavigateTo(confirmationUrl);
+                var query = $"fdh={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}";
+                NavigationManager.NavigateTo($"/confirmation?{query}");
             }
         }
         else

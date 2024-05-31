@@ -41,26 +41,12 @@ namespace TestClientServer.Server.Controllers;
         /*********** Get Newly Created Equipment Records from Table *********/
         /*******************************************************************/
         [HttpGet("GetPon")]
-        public async Task<IActionResult> GetNewEquipmentRecords([FromQuery]string fdh, [FromQuery]string splitterCard)
+        public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecords(string fdh, string splitterCard)
         {
-            try
-            {
                 var newEquipId = CreateNewEquipId(fdh, splitterCard);
                 var equipment = await equipmentService.GetEquipmentByEquipId(newEquipId);
-
-                if (equipment == null)
-                {
-                    return NotFound("Equipment not found.");
-                }
-
-                var createdDate = equipment.CreatedDate;
-                var equipmentRecords = await equipmentService.GetEquipmentByCreatedDate(createdDate);
-                return Ok(equipmentRecords);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"An error occured: {ex.Message}");
-            }
+                var equipmentList = await equipmentService.GetNewEquipmentRecords(equipment);
+                return equipmentList;
         }
 
         public string CreateNewEquipId(string fdh, string splitterCard)
