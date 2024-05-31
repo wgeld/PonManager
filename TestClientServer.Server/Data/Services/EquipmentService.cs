@@ -2,9 +2,6 @@
 using TestClientServer.Server.Data.Interfaces;
 using TestClientServer.Shared;
 using TestClientServer.Shared.Models;
-using System;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace TestClientServer.Server.Data.Services;
@@ -64,7 +61,7 @@ public class EquipmentService : IEquipmentService
             {
                 var equipment = new WcfMgmtEquipment
                 {
-                    EquId = reader["equID"] as string,
+                    EquId = reader["equID"] as string, 
                     Id = (int)reader["Id"],
                 EquClass = reader["equClass"] as string,
                 Serial = reader["serial"] as string,

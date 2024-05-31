@@ -80,10 +80,10 @@ namespace TestClientServer.Server.Controllers;
     private async Task<List<WcfMgmtEquipment>> GenerateAndAddEquipmentRecords(int olt, int lt, int pon, string town, string fdh, string splitter)
     {
         var newRecord = new List<WcfMgmtEquipment>();
-        for (int i = 1; i <= 16; i++)
+        for (var i = 1; i <= 16; i++)
         {
-            newRecord.Add(CreateOntPath(olt, lt, pon, town, i));
-            newRecord.Add(CreateFdhPath(fdh, town, splitter, i));
+            newRecord.Add(CreateOntPath(olt, lt, pon,i, town));
+            newRecord.Add(CreateFdhPath(fdh, splitter, i, town));
         }
         await equipmentService.AddPonWcfEquipments(newRecord);
         return newRecord;
@@ -91,7 +91,7 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Create the ONT PON Path for Equip Table ****************/
         /*******************************************************************/
-    private WcfMgmtEquipment CreateOntPath(int olt, int lt, int pon, string town, int nextAvailOnt)
+    private WcfMgmtEquipment CreateOntPath(int olt, int lt, int pon, int nextAvailOnt, string town)
     {
         var ontEquId = utilityService.CreateEquipIdOnt(olt, lt, pon, nextAvailOnt);
         return utilityService.CreateOntPathWcfMgmtEquipment(olt, lt, pon, town, ontEquId, nextAvailOnt);
@@ -100,7 +100,7 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Create the FDH PON Path for Equip Table ****************/
         /*******************************************************************/
-    private WcfMgmtEquipment CreateFdhPath(string fdh, string town, string splitter, int splitterTail)
+    private WcfMgmtEquipment CreateFdhPath(string fdh, string splitter, int splitterTail, string town)
     {
         var fdhSplitterCard = utilityService.CreateSplitterCard(splitter);
         var fdhEquId = utilityService.CreateEquipIdFdh(fdh, fdhSplitterCard, splitterTail);

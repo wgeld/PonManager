@@ -14,47 +14,73 @@
     <div class="alert alert-success">
         <strong>Success!</strong> The Pon Path information has been successfully created. The created results are below: 
     </div>
-
     <div class="mt-3">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Class</th>
-                <th>ID</th>
-                <th>Equipment ID</th>
-                <th>FDH</th>
-                <th>Card</th>
-                <th>Tail</th>
-                <th>OLT</th>
-                <th>LT</th>
-                <th>PON</th>
-                <th>ONT</th>
-                <th>Town</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            @{
-                System.Diagnostics.Debug.Assert(_equipmentRecords != null, nameof(_equipmentRecords) + " != null");
-            }
-            @foreach (var equipment in _equipmentRecords)
-            {
+        <div class="table-container">
+            
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>@equipment.EquClass</td>
-                    <td>@equipment.Id</td>
-                    <td>@equipment.EquId</td>
-                    <td>@equipment.Fdh</td>
-                    <td>@equipment.SplitterCard</td>
-                    <td>@equipment.SplitterTail</td>
-                    <td>@equipment.Olt</td>
-                    <td>@equipment.Lt</td>
-                    <td>@equipment.Pon</td>
-                    <td>@equipment.Ont</td>
-                    <td>@equipment.Town</td>
+                    <th>Class</th>
+                    <th>ID</th>
+                    <th>Equipment ID</th>
+                    <th>FDH</th>
+                    <th>Card</th>
+                    <th>Tail</th>
+                    <th>Town</th>
                 </tr>
-            }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach (var equipment in _equipmentRecords)
+                {
+                    if (equipment.EquId.StartsWith("F"))
+                    {
+                        <tr>
+                            <td>@equipment.EquClass</td>
+                            <td>@equipment.Id</td>
+                            <td>@equipment.EquId</td>
+                            <td>@equipment.Fdh</td>
+                            <td>@equipment.SplitterCard</td>
+                            <td>@equipment.SplitterTail</td>
+                            <td>@equipment.Town</td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>ID</th>
+                    <th>Equipment ID</th>
+                    <th>OLT</th>
+                    <th>LT</th>
+                    <th>PON</th>
+                    <th>ONT</th>
+                    <th>Town</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var equipment in _equipmentRecords)
+                {
+                    if (equipment.EquId.StartsWith("N"))
+                    {
+                        <tr>
+                            <td>@equipment.EquClass</td>
+                            <td>@equipment.Id</td>
+                            <td>@equipment.EquId</td>
+                            <td>@equipment.Olt</td>
+                            <td>@equipment.Lt</td>
+                            <td>@equipment.Pon</td>
+                            <td>@equipment.Ont</td>
+                            <td>@equipment.Town</td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -70,7 +96,7 @@
         var splitter = query.Get("splitter"); 
         var fsa = query.Get("fdh");
         
-        // Construct the URL with proper parameter inclusion
+        // Construct the URL with inputs
         var url = $"formdata/GetPon?fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
         var response = await Http.GetAsync(url);
         
@@ -83,9 +109,8 @@
         }
         else
         {
-            // Handle the case where the HTTP request fails
-            _equipmentRecords = new List<WcfMgmtEquipment>(); // Ensure the list is initialized to prevent null reference exceptions
-            Console.Error.WriteLine("Failed to load equipment records");
+            //Handle the case if the HTTP request fails
+            _equipmentRecords = new List<WcfMgmtEquipment>(); 
         }
     }
 }
@@ -110,4 +135,21 @@
     .table tr:hover {
         background-color: #ddd;
     }
+    .table-container {
+        display: flex;
+        justify-content: space-around;
+    }
+    .table {
+        width: 50%; /* Adjust based on space and content */
+        margin: 0 10px; /* Provides spacing between tables */
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px; /* Padding for readability */
+        text-align: left; /* Align text to the left within cells */
+    }
+
 </style>
