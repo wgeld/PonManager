@@ -85,7 +85,6 @@
 </div>
 
 @code {
-    
     private List<WcfMgmtEquipment>? _equipmentRecords = [];
 
     protected override async Task OnInitializedAsync()
@@ -110,6 +109,10 @@
                 await response.Content.ReadAsStreamAsync(),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
+            _equipmentRecords = _equipmentRecords
+                .OrderBy(e => e.SplitterTail)
+                .ThenBy(e => e.Ont)
+                .ToList();
         }
         else
         {
