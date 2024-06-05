@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TestClientServer.Shared.Models.Server;
 
 namespace TestClientServer.Shared.Models.DBContext;
 public partial class WcfMgmtTestContext : DbContext

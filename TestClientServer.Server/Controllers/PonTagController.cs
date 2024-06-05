@@ -29,6 +29,7 @@ namespace TestClientServer.Server.Controllers;
                 if (checkWcfMgmtOltResult is OkObjectResult)
                     return Ok("PON exists WCFEquip");
                 
+                //Need to split the splitter input at the '.' to extract the splitterCard. 
                 var splitterCard = utilityService.CreateSplitterCard(splitter);
                 var checkWcfMgmtFdhResult = await CheckWcfFdhPath(fdh, splitterCard, town);
                 if (checkWcfMgmtFdhResult is OkObjectResult)

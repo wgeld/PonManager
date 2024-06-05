@@ -2,6 +2,7 @@
 using TestClientServer.Server.Data.Interfaces;
 using TestClientServer.Shared.Models;
 using TestClientServer.Shared.Models.DBContext;
+using TestClientServer.Shared.Models.Server;
 
 namespace TestClientServer.Server.Data.Services;
 
