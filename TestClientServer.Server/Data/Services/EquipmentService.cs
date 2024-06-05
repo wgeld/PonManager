@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using TestClientServer.Shared;
 using TestClientServer.Shared.Models;
@@ -9,12 +10,16 @@ namespace TestClientServer.Server.Data.Services;
 public class EquipmentService : IEquipmentService
 {
     private readonly WcfMgmtTestContext _context;
-    private IEquipmentService _equipmentServiceImplementation;
 
     public EquipmentService(WcfMgmtTestContext context)
     {
         _context = context;
         _context.Database.SetCommandTimeout(180);
+    }
+    public async Task<WcfMgmtEquipment?> WcfGetPonDetailsAsync(int olt, int lt, int pon, string town)
+    {
+        return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
+            x.Olt == olt && x.Lt == lt && x.Pon == pon && x.Town == town);
     }
 
     public async Task AddPonWcfEquipments(IEnumerable<WcfMgmtEquipment> newRecords)
@@ -29,71 +34,71 @@ public class EquipmentService : IEquipmentService
         await _context.Database.ExecuteSqlRawAsync(enableTriggerSql);
 
     }
-    
-    public async Task<DateTime?> GetEquipmentByEquipId(string equipId)
-    {
-        var connectionString = _context.Database.GetDbConnection().ConnectionString;
-        await using var connection = new SqlConnection(connectionString);
- 
-        var command = new SqlCommand("SELECT createdDate FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE equID = @equipId", connection);
-        command.Parameters.AddWithValue("@equipId", equipId);
 
-        await connection.OpenAsync();
-        var result = await command.ExecuteScalarAsync();  
-        await connection.CloseAsync();
-        
-        return result as DateTime?;
-    }
-
-    public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecords(DateTime? createdDate)
+    public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecords(int olt, int lt, int pon, string town, string fdh, string splitterCard)
     {
-        var connectionString = _context.Database.GetDbConnection().ConnectionString;
         List<WcfMgmtEquipment> equipmentList = [];
+        
+        var connectionString = _context.Database.GetDbConnection().ConnectionString;
         await using var connection = new SqlConnection(connectionString);
         await connection.OpenAsync();
 
-        var query = "SELECT * FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE createdDate = @createdDate";
-        var command = new SqlCommand(query, connection);
-        command.Parameters.AddWithValue("@createdDate", createdDate.Value);
-        await using (var reader = await command.ExecuteReaderAsync())
+        const string oltQuery = "SELECT * FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] " +
+                                "WHERE olt = @olt AND lt = @lt AND pon = @pon AND town = @town";
+        
+        var oltCommand = new SqlCommand(oltQuery, connection);
+        oltCommand.Parameters.AddWithValue("@olt", olt);
+        oltCommand.Parameters.AddWithValue("@lt", lt);
+        oltCommand.Parameters.AddWithValue("@pon", pon);
+        oltCommand.Parameters.AddWithValue("@town", town);
+        
+        const string fdhQuery = "SELECT * FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] " +
+                                "WHERE fdh = @fdh AND splitterCard = @splitterCard AND town = @town";
+
+        var fdhCommand = new SqlCommand(fdhQuery, connection);
+        fdhCommand.Parameters.AddWithValue("@fdh", fdh);
+        fdhCommand.Parameters.AddWithValue("@splitterCard", splitterCard);
+        fdhCommand.Parameters.AddWithValue("@town", town);
+        
+        await using (var oltReader = await oltCommand.ExecuteReaderAsync())
         {
-            while (reader.Read())
+            while (oltReader.Read())
             {
-                var equipment = new WcfMgmtEquipment
+                var oltEquipment = new WcfMgmtEquipment
                 {
-                    EquId = reader["equID"] as string, 
-                    Id = (int)reader["Id"],
-                EquClass = reader["equClass"] as string,
-                Serial = reader["serial"] as string,
-                Mac = reader["mac"] as string,
-                AssetTag = reader["assetTag"] as string,
-                Manufacturer = reader["manufacturer"] as string,
-                Model = reader["model"] as string,
-                Ssid24 = reader["ssid24"] as string,
-                Ssid5g = reader["ssid5g"] as string,
-                SsidPassword = reader["ssidPassword"] as string,
-                Fdh = reader["fdh"] as string,
-                SplitterCard = reader["splitterCard"] as string,
-                SplitterTail = reader.IsDBNull(reader.GetOrdinal("splitterTail")) ? null : reader.GetInt32(reader.GetOrdinal("splitterTail")),
-                Olt = reader.IsDBNull(reader.GetOrdinal("olt")) ? null : reader.GetInt32(reader.GetOrdinal("olt")),
-                Lt = reader.IsDBNull(reader.GetOrdinal("lt")) ? null : reader.GetInt32(reader.GetOrdinal("lt")),
-                Pon = reader.IsDBNull(reader.GetOrdinal("pon")) ? null : reader.GetInt32(reader.GetOrdinal("pon")),
-                Ont = reader.IsDBNull(reader.GetOrdinal("ont")) ? null : reader.GetInt32(reader.GetOrdinal("ont")),
-                InstallDate = reader.IsDBNull(reader.GetOrdinal("installDate")) ? null : (DateTime?)reader["installDate"],
-                RemovalDate = reader.IsDBNull(reader.GetOrdinal("removalDate")) ? null : (DateTime?)reader["removalDate"],
-                ModifiedDate = reader.IsDBNull(reader.GetOrdinal("modifiedDate")) ? null : (DateTime?)reader["modifiedDate"],
-                CreatedDate = reader.IsDBNull(reader.GetOrdinal("createdDate")) ? null : (DateTime?)reader["createdDate"],
-                CreatedBy = reader["createdBy"] as string,
-                ModifiedBy = reader["modifiedBy"] as string,
-                RemovedBy = reader["removedBy"] as string,
-                Town = reader["town"] as string
+                    EquId = oltReader["equID"] as string,
+                    Id = (int)oltReader["Id"],
+                EquClass = oltReader["equClass"] as string,
+                Olt = oltReader.IsDBNull(oltReader.GetOrdinal("olt")) ? null : oltReader.GetInt32(oltReader.GetOrdinal("olt")),
+                Lt = oltReader.IsDBNull(oltReader.GetOrdinal("lt")) ? null : oltReader.GetInt32(oltReader.GetOrdinal("lt")),
+                Pon = oltReader.IsDBNull(oltReader.GetOrdinal("pon")) ? null : oltReader.GetInt32(oltReader.GetOrdinal("pon")),
+                Ont = oltReader.IsDBNull(oltReader.GetOrdinal("ont")) ? null : oltReader.GetInt32(oltReader.GetOrdinal("ont")),
+                CreatedDate = oltReader.IsDBNull(oltReader.GetOrdinal("createdDate")) ? null : (DateTime?)oltReader["createdDate"],
+                Town = oltReader["town"] as string
                 };
-                equipmentList.Add(equipment);
+                equipmentList.Add(oltEquipment);
+            }
+        }
+
+        await using (var fdhReader = await fdhCommand.ExecuteReaderAsync())
+        {
+            while (fdhReader.Read())
+            {
+                var fdhEquipment = new WcfMgmtEquipment
+                { 
+                    EquId = fdhReader["equID"] as string,
+                    Id = (int)fdhReader["Id"],
+                 EquClass = fdhReader["equClass"] as string, 
+                 Fdh = fdhReader["fdh"] as string,
+                 SplitterCard = fdhReader["splitterCard"] as string,
+                 SplitterTail = fdhReader.IsDBNull(fdhReader.GetOrdinal("splitterTail")) ? null : fdhReader.GetInt32(fdhReader.GetOrdinal("splitterTail")),
+                 Town = fdhReader["town"] as string
+                };
+                equipmentList.Add(fdhEquipment);
             }
         }
         await connection.CloseAsync();
-
+        
         return equipmentList;
     }
-    
 }

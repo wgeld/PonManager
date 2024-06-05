@@ -21,9 +21,13 @@ namespace TestClientServer.Server.Controllers;
         {
             try
             {
-                var checkResult = await CheckAsp2Path(olt, lt, pon, town, fdh, splitter);
-                if (checkResult is OkObjectResult) 
-                    return  Ok("PON Path already exists in AvailableSignalPorts2.");
+                var checkAsp2Result = await CheckAsp2Path(olt, lt, pon, town, fdh, splitter);
+                if (checkAsp2Result is OkObjectResult) 
+                    return  Ok("PON exists ASP2");
+
+                var checkWcfMgmtResult = await CheckWcfPath(olt, lt, pon, town);
+                if (checkWcfMgmtResult is OkObjectResult)
+                    return Ok("PON exists WCFEquip");
 
                 var createResult = await CreateAsp2Path(olt, lt, pon, town, fdh, splitter);
                 if (createResult is not OkObjectResult) 
@@ -40,13 +44,18 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Get Newly Created Equipment Records from Table *********/
         /*******************************************************************/
-        [HttpGet("GetPon")]
-        public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecords(string fdh, string splitterCard)
+        [HttpGet("GetPon")] 
+        public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecord(int olt, int lt, int pon, string town, string fdh, string splitterCard)
         {
-                var newEquipId = CreateNewEquipId(fdh, splitterCard);
-                var equipment = await equipmentService.GetEquipmentByEquipId(newEquipId);
-                var equipmentList = await equipmentService.GetNewEquipmentRecords(equipment);
-                return equipmentList;
+            try
+            {
+                var newRecords = await equipmentService.GetNewEquipmentRecords(olt, lt, pon, town, fdh, splitterCard);
+                return newRecords;
+            }
+            catch (Exception)
+            {
+                return new List<WcfMgmtEquipment>();
+            }
         }
 
         public string CreateNewEquipId(string fdh, string splitterCard)
@@ -54,7 +63,14 @@ namespace TestClientServer.Server.Controllers;
             var newEquipId =  utilityService.CreateEquipIdFdh(fdh, splitterCard, 1);
             return newEquipId;
         }
-        
+        /*********************************************************************/
+        /******** Check WCFEquipments to See If Path Already Exists *********/
+        /*******************************************************************/
+        private async Task<IActionResult> CheckWcfPath(int olt, int lt, int pon, string town)
+        {
+            var detailsWcf = await equipmentService.WcfGetPonDetailsAsync(olt, lt, pon, town);
+            return detailsWcf == null ? NotFound() : Ok(detailsWcf);
+        }
         /*********************************************************************/
         /*********** Check ASP2 to See If Path Already Exists ***************/
         /*******************************************************************/
@@ -63,7 +79,6 @@ namespace TestClientServer.Server.Controllers;
         var detailsAsp2 = await asp2Service.Asp2GetPonDetailsAsync(olt, lt, pon, town, fdh, splitter);
         return detailsAsp2 == null ? NotFound() : Ok(detailsAsp2);
     }
-    
         /*********************************************************************/
         /*********** Create PON Path Information in ASP2 ********************/
         /*******************************************************************/
@@ -73,7 +88,6 @@ namespace TestClientServer.Server.Controllers;
         await asp2Service.AddNewPonPathAsp2(newPonPath);
         return Ok(newPonPath);
     }
-    
         /*********************************************************************/
         /***** Create & Add the 32 New Equip Records to Equip Table *********/
         /*******************************************************************/
@@ -96,7 +110,6 @@ namespace TestClientServer.Server.Controllers;
         var ontEquId = utilityService.CreateEquipIdOnt(olt, lt, pon, nextAvailOnt);
         return utilityService.CreateOntPathWcfMgmtEquipment(olt, lt, pon, town, ontEquId, nextAvailOnt);
     }
-        
         /*********************************************************************/
         /*********** Create the FDH PON Path for Equip Table ****************/
         /*******************************************************************/

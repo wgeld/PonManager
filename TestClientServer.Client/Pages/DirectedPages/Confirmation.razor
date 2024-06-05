@@ -85,7 +85,6 @@
 </div>
 
 @code {
-
     
     private List<WcfMgmtEquipment>? _equipmentRecords = [];
 
@@ -93,11 +92,16 @@
     {
         var uri = new Uri(NavigationManager.Uri);
         var query = HttpUtility.ParseQueryString(uri.Query);
+        
+        var olt = query.Get("olt");
+        var lt = query.Get("lt");
+        var pon = query.Get("pon");
+        var town = query.Get("town");
         var splitter = query.Get("splitter"); 
         var fsa = query.Get("fdh");
         
         // Construct the URL with inputs
-        var url = $"formdata/GetPon?fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
+        var url = $"formdata/GetPon?olt={olt}&lt={lt}&pon={pon}&town={Uri.EscapeDataString(town)}&fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
         var response = await Http.GetAsync(url);
         
         if (response.IsSuccessStatusCode)
