@@ -27,7 +27,7 @@ public class UtilityService : IUtilityService
         return $"{olt:00}.{lt:00}.{pon:00}";
     }
 
-    public WcfMgmtEquipment CreateOntPathWcfMgmtEquipment(int olt, int lt, int pon,
+    public WcfMgmtEquipment? CreateOntPathWcfMgmtEquipment(int olt, int lt, int pon,
         string town, string ontEquId, int ont)
     {
         const string equClass = "F-OLT";
@@ -47,7 +47,7 @@ public class UtilityService : IUtilityService
         return newRecord;
     }
 
-    public WcfMgmtEquipment CreateFdhPathWcfMgmtEquipment(string fdh, string town, string fdhSplitterCard,
+    public WcfMgmtEquipment? CreateFdhPathWcfMgmtEquipment(string fdh, string town, string fdhSplitterCard,
         string fdhEquId, int splitterTail)
     {
         const string equClass = "F-FDH";

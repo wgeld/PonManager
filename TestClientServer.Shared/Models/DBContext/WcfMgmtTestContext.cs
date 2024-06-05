@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestClientServer.Shared.Models;
 
-namespace TestClientServer.Shared;
+namespace TestClientServer.Shared.Models.DBContext;
 public partial class WcfMgmtTestContext : DbContext
 {
     public WcfMgmtTestContext()
@@ -13,7 +12,7 @@ public partial class WcfMgmtTestContext : DbContext
     {
     }
 
-    public virtual DbSet<AvailableSignalPorts2?> AvailableSignalPorts2s { get; set; }
+    public virtual DbSet<AvailableSignalPorts2> AvailableSignalPorts2s { get; set; }
 
     public virtual DbSet<WcfMgmtEquipment> WcfMgmtEquipments { get; set; }
 

@@ -4,6 +4,7 @@ using TestClientServer.Server.Data.Interfaces;
 using TestClientServer.Shared;
 using TestClientServer.Shared.Models;
 using Microsoft.Data.SqlClient;
+using TestClientServer.Shared.Models.DBContext;
 
 namespace TestClientServer.Server.Data.Services;
 
@@ -16,13 +17,27 @@ public class EquipmentService : IEquipmentService
         _context = context;
         _context.Database.SetCommandTimeout(180);
     }
-    public async Task<WcfMgmtEquipment?> WcfGetPonDetailsAsync(int olt, int lt, int pon, string town)
+    public async Task<WcfMgmtEquipment?> WcfGetOltDetailsAsync(int olt, int lt, int pon, string town)
     {
+        if (string.IsNullOrEmpty(town))
+        {
+            return null;
+        }
         return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
             x.Olt == olt && x.Lt == lt && x.Pon == pon && x.Town == town);
     }
+    
+    public async Task<WcfMgmtEquipment?> WcfGetFdhDetailsAsync(string fdh, string splitterCard, string town)
+    {
+        if (string.IsNullOrEmpty(fdh) || string.IsNullOrEmpty(splitterCard) || string.IsNullOrEmpty(town))
+        {
+            return null;
+        }
+        return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
+            x.Fdh == fdh && x.SplitterCard == splitterCard && x.Town == town);
+    }
 
-    public async Task AddPonWcfEquipments(IEnumerable<WcfMgmtEquipment> newRecords)
+    public async Task AddPonWcfEquipments(IEnumerable<WcfMgmtEquipment?> newRecords)
     {
         const string disableTriggerSql = "DISABLE TRIGGER calculateAvailablePorts ON wcfMgmtEquipments";
         await _context.Database.ExecuteSqlRawAsync(disableTriggerSql);
@@ -79,7 +94,6 @@ public class EquipmentService : IEquipmentService
                 equipmentList.Add(oltEquipment);
             }
         }
-
         await using (var fdhReader = await fdhCommand.ExecuteReaderAsync())
         {
             while (fdhReader.Read())

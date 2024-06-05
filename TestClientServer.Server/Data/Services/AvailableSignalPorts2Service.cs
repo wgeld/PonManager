@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
-using TestClientServer.Shared;
 using TestClientServer.Shared.Models;
+using TestClientServer.Shared.Models.DBContext;
 
 namespace TestClientServer.Server.Data.Services;
 
 public class AvailableSignalPorts2Service : IAvailableSignalPorts2Service
 {
     private readonly WcfMgmtTestContext _context;
-
     public AvailableSignalPorts2Service(WcfMgmtTestContext context)
     {
         _context = context;
@@ -29,7 +28,4 @@ public class AvailableSignalPorts2Service : IAvailableSignalPorts2Service
         // Return the added entity, which now includes the generated ID (if applicable)
         return addedEntity.Entity;
     }
-    
-
-
 }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using TestClientServer.Server.Data.Services;
 using TestClientServer.Shared;
+using TestClientServer.Shared.Models.DBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

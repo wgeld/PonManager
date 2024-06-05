@@ -25,10 +25,15 @@ namespace TestClientServer.Server.Controllers;
                 if (checkAsp2Result is OkObjectResult) 
                     return  Ok("PON exists ASP2");
 
-                var checkWcfMgmtResult = await CheckWcfPath(olt, lt, pon, town);
-                if (checkWcfMgmtResult is OkObjectResult)
+                var checkWcfMgmtOltResult = await CheckWcfOltPath(olt, lt, pon, town);
+                if (checkWcfMgmtOltResult is OkObjectResult)
                     return Ok("PON exists WCFEquip");
-
+                
+                var splitterCard = utilityService.CreateSplitterCard(splitter);
+                var checkWcfMgmtFdhResult = await CheckWcfFdhPath(fdh, splitterCard, town);
+                if (checkWcfMgmtFdhResult is OkObjectResult)
+                    return Ok("PON exists WCFEquip");
+                
                 var createResult = await CreateAsp2Path(olt, lt, pon, town, fdh, splitter);
                 if (createResult is not OkObjectResult) 
                     return BadRequest("Error creating PON path");
@@ -57,18 +62,20 @@ namespace TestClientServer.Server.Controllers;
                 return new List<WcfMgmtEquipment>();
             }
         }
-
-        public string CreateNewEquipId(string fdh, string splitterCard)
+        /*********************************************************************/
+        /******* Check WCFEquipments to See If Olt Path Already Exists ******/
+        /*******************************************************************/
+        private async Task<IActionResult> CheckWcfOltPath(int olt, int lt, int pon, string town)
         {
-            var newEquipId =  utilityService.CreateEquipIdFdh(fdh, splitterCard, 1);
-            return newEquipId;
+            var detailsWcf = await equipmentService.WcfGetOltDetailsAsync(olt, lt, pon, town);
+            return detailsWcf == null ? NotFound() : Ok(detailsWcf);
         }
         /*********************************************************************/
-        /******** Check WCFEquipments to See If Path Already Exists *********/
+        /******* Check WCFEquipments to See If Fdh Path Already Exists ******/
         /*******************************************************************/
-        private async Task<IActionResult> CheckWcfPath(int olt, int lt, int pon, string town)
+        private async Task<IActionResult> CheckWcfFdhPath(string fdh, string splitterCard, string town)
         {
-            var detailsWcf = await equipmentService.WcfGetPonDetailsAsync(olt, lt, pon, town);
+            var detailsWcf = await equipmentService.WcfGetFdhDetailsAsync(fdh, splitterCard, town);
             return detailsWcf == null ? NotFound() : Ok(detailsWcf);
         }
         /*********************************************************************/
@@ -91,9 +98,9 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /***** Create & Add the 32 New Equip Records to Equip Table *********/
         /*******************************************************************/
-    private async Task<List<WcfMgmtEquipment>> GenerateAndAddEquipmentRecords(int olt, int lt, int pon, string town, string fdh, string splitter)
+    private async Task<List<WcfMgmtEquipment?>> GenerateAndAddEquipmentRecords(int olt, int lt, int pon, string town, string fdh, string splitter)
     {
-        var newRecord = new List<WcfMgmtEquipment>();
+        var newRecord = new List<WcfMgmtEquipment?>();
         for (var i = 1; i <= 16; i++)
         {
             newRecord.Add(CreateOntPath(olt, lt, pon,i, town));
@@ -105,7 +112,7 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Create the ONT PON Path for Equip Table ****************/
         /*******************************************************************/
-    private WcfMgmtEquipment CreateOntPath(int olt, int lt, int pon, int nextAvailOnt, string town)
+    private WcfMgmtEquipment? CreateOntPath(int olt, int lt, int pon, int nextAvailOnt, string town)
     {
         var ontEquId = utilityService.CreateEquipIdOnt(olt, lt, pon, nextAvailOnt);
         return utilityService.CreateOntPathWcfMgmtEquipment(olt, lt, pon, town, ontEquId, nextAvailOnt);
@@ -113,7 +120,7 @@ namespace TestClientServer.Server.Controllers;
         /*********************************************************************/
         /*********** Create the FDH PON Path for Equip Table ****************/
         /*******************************************************************/
-    private WcfMgmtEquipment CreateFdhPath(string fdh, string splitter, int splitterTail, string town)
+    private WcfMgmtEquipment? CreateFdhPath(string fdh, string splitter, int splitterTail, string town)
     {
         var fdhSplitterCard = utilityService.CreateSplitterCard(splitter);
         var fdhEquId = utilityService.CreateEquipIdFdh(fdh, fdhSplitterCard, splitterTail);
