@@ -1,8 +1,6 @@
-﻿using TestClientServer.Shared.Models;
-using TestClientServer.Shared.Models.Server;
+﻿using TestClientServer.Shared.Models.Server;
 
 namespace TestClientServer.Server.Data.Interfaces;
-
 public interface IUtilityService
 {
     string CreateEquipIdOnt(int olt, int lt, int pon, int nextAvailOnt);

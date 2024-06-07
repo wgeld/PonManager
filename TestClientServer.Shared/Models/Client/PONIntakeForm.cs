@@ -1,4 +1,4 @@
-﻿namespace TestClientServer.Shared.Models;
+﻿namespace TestClientServer.Shared.Models.Client;
 
 public class FormData
 {

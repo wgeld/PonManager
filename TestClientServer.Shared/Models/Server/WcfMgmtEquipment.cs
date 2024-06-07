@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace TestClientServer.Shared.Models;
+﻿namespace TestClientServer.Shared.Models.Server;
 public class WcfMgmtEquipment
 {
     public string? LocationId { get; set; }

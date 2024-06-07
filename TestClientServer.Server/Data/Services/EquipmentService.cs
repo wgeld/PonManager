@@ -1,22 +1,22 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
-using TestClientServer.Shared;
-using TestClientServer.Shared.Models;
 using Microsoft.Data.SqlClient;
 using TestClientServer.Shared.Models.DBContext;
+using TestClientServer.Shared.Models.Server;
 
 namespace TestClientServer.Server.Data.Services;
 
 public class EquipmentService : IEquipmentService
 {
     private readonly WcfMgmtTestContext _context;
-
     public EquipmentService(WcfMgmtTestContext context)
     {
         _context = context;
         _context.Database.SetCommandTimeout(180);
     }
+    /*******************************************************************/
+    /*********** Search WcfEquipments for Existing OLT Path ************/
+    /*******************************************************************/
     public async Task<WcfMgmtEquipment?> WcfGetOltDetailsAsync(int olt, int lt, int pon, string town)
     {
         if (string.IsNullOrEmpty(town))
@@ -26,7 +26,9 @@ public class EquipmentService : IEquipmentService
         return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
             x.Olt == olt && x.Lt == lt && x.Pon == pon && x.Town == town);
     }
-    
+    /*******************************************************************/
+    /*********** Search WcfEquipments for Existing FDH Path ************/
+    /*******************************************************************/
     public async Task<WcfMgmtEquipment?> WcfGetFdhDetailsAsync(string fdh, string splitterCard, string town)
     {
         if (string.IsNullOrEmpty(fdh) || string.IsNullOrEmpty(splitterCard) || string.IsNullOrEmpty(town))
@@ -36,20 +38,24 @@ public class EquipmentService : IEquipmentService
         return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
             x.Fdh == fdh && x.SplitterCard == splitterCard && x.Town == town);
     }
-
+    /*******************************************************************/
+    /********* Add List of Equipment Records to WCFEquip Table *********/
+    /*******************************************************************/
     public async Task AddPonWcfEquipments(IEnumerable<WcfMgmtEquipment?> newRecords)
     {
         const string disableTriggerSql = "DISABLE TRIGGER calculateAvailablePorts ON wcfMgmtEquipments";
         await _context.Database.ExecuteSqlRawAsync(disableTriggerSql);
 
-        _context.WcfMgmtEquipments.AddRange(newRecords);
+        _context.WcfMgmtEquipments.AddRange(newRecords!);
         await _context.SaveChangesAsync();
 
         const string enableTriggerSql = "ENABLE TRIGGER calculateAvailablePorts ON wcfMgmtEquipments";
         await _context.Database.ExecuteSqlRawAsync(enableTriggerSql);
-
     }
-
+    /*******************************************************************/
+    /*********** Add Newly Created Equip Records to a List *************/
+    /*********** Return for /Confirmation Page Table *******************/
+    /*******************************************************************/
     public async Task<List<WcfMgmtEquipment>> GetNewEquipmentRecords(int olt, int lt, int pon, string town, string fdh, string splitterCard)
     {
         List<WcfMgmtEquipment> equipmentList = [];

@@ -6,28 +6,40 @@ namespace TestClientServer.Server.Data.Services;
 
 public class UtilityService : IUtilityService
 {
+    /*******************************************************************/
+    /********* Create the Equipment ID for an ONT Path *****************/
+    /*******************************************************************/
     public string CreateEquipIdOnt(int olt, int lt, int pon, int nextAvailOnt)
     {
         return $"N{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}";
     }
-
+    /*******************************************************************/
+    /********* Create the Equipment ID for a FDH Path ******************/
+    /*******************************************************************/
     public string CreateEquipIdFdh(string fdh, string splitterCard, int splitterTail)
     {
         return $"F{fdh}.{splitterCard}.{splitterTail:00}";
     }
-
+    /*******************************************************************/
+    /******** Split the Splitter Input to get the SplitterCard *********/
+    /*******************************************************************/
     public string CreateSplitterCard(string splitter)
     {
         var parts = splitter.Split('.'); // Split the splitter input
         var splitterCard = parts.Length > 1 ? parts[1] : ""; //splitterCard is the input after the .
         return splitterCard;
     }
-    
+    /*******************************************************************/
+    /************* Create the PonPath for ASP2 Table *******************/
+    /*******************************************************************/
     private static string CreatePonPath(int olt, int lt, int pon)
     {
         return $"{olt:00}.{lt:00}.{pon:00}";
     }
-
+    /*******************************************************************/
+    /********* Create the New ONT Path to add to the List **************/
+    /********** This list gets sent to the Equipments Table ************/
+    /*******************************************************************/
     public WcfMgmtEquipment? CreateOntPathWcfMgmtEquipment(int olt, int lt, int pon,
         string town, string ontEquId, int ont)
     {
@@ -47,7 +59,10 @@ public class UtilityService : IUtilityService
         };
         return newRecord;
     }
-
+    /*******************************************************************/
+    /********* Create the New FDH Path to add to the List **************/
+    /********** This list gets sent to the Equipments Table ************/
+    /*******************************************************************/
     public WcfMgmtEquipment? CreateFdhPathWcfMgmtEquipment(string fdh, string town, string fdhSplitterCard,
         string fdhEquId, int splitterTail)
     {
@@ -66,8 +81,10 @@ public class UtilityService : IUtilityService
         };
         return newRecord;
     }
-
-
+    /*******************************************************************/
+    /********* Create the New ASP2 Path to add to the List *************/
+    /********** This Path gets sent to the ASP2 Table ******************/
+    /*******************************************************************/
     public AvailableSignalPorts2? CreateNewPonPathAsp2(int olt, int lt, int pon, string town, string fdh, string splitter)
     {
         var ponPath = CreatePonPath(olt, lt, pon);
