@@ -1,8 +1,6 @@
 ﻿@page "/confirmation"
 @using System.Text.Json
-@using System.Net.Http.Json
 @using System.Web
-@using TestClientServer.Shared.Models
 @using TestClientServer.Shared.Models.Server
 @layout MainLayout
 @inject HttpClient Http
@@ -32,20 +30,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var equipment in _equipmentRecords)
+                @foreach (var equipment in _equipmentRecords!.Where(equipment => equipment.EquId!.StartsWith("F")))
                 {
-                    if (equipment.EquId.StartsWith("F"))
-                    {
-                        <tr>
-                            <td>@equipment.EquClass</td>
-                            <td>@equipment.Id</td>
-                            <td>@equipment.EquId</td>
-                            <td>@equipment.Fdh</td>
-                            <td>@equipment.SplitterCard</td>
-                            <td>@equipment.SplitterTail</td>
-                            <td>@equipment.Town</td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@equipment.EquClass</td>
+                        <td>@equipment.Id</td>
+                        <td>@equipment.EquId</td>
+                        <td>@equipment.Fdh</td>
+                        <td>@equipment.SplitterCard</td>
+                        <td>@equipment.SplitterTail</td>
+                        <td>@equipment.Town</td>
+                    </tr>
                 }
                 </tbody>
             </table>
@@ -63,21 +58,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var equipment in _equipmentRecords)
+                @foreach (var equipment in _equipmentRecords!.Where(equipment => equipment.EquId!.StartsWith("N")))
                 {
-                    if (equipment.EquId.StartsWith("N"))
-                    {
-                        <tr>
-                            <td>@equipment.EquClass</td>
-                            <td>@equipment.Id</td>
-                            <td>@equipment.EquId</td>
-                            <td>@equipment.Olt</td>
-                            <td>@equipment.Lt</td>
-                            <td>@equipment.Pon</td>
-                            <td>@equipment.Ont</td>
-                            <td>@equipment.Town</td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@equipment.EquClass</td>
+                        <td>@equipment.Id</td>
+                        <td>@equipment.EquId</td>
+                        <td>@equipment.Olt</td>
+                        <td>@equipment.Lt</td>
+                        <td>@equipment.Pon</td>
+                        <td>@equipment.Ont</td>
+                        <td>@equipment.Town</td>
+                    </tr>
                 }
                 </tbody>
             </table>
@@ -110,7 +102,7 @@
                 await response.Content.ReadAsStreamAsync(),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
-            _equipmentRecords = _equipmentRecords
+            _equipmentRecords = _equipmentRecords!
                 .OrderBy(e => e.SplitterTail)
                 .ThenBy(e => e.Ont)
                 .ToList();
