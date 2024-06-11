@@ -12,7 +12,12 @@ public class AvailableSignalPorts2Service(WcfMgmtTestContext context) : IAvailab
     public async Task<AvailableSignalPorts2?> Asp2GetPonDetailsAsync(int olt, int lt, int pon, string town, string fdh, string splitter)
     {
         return await context.AvailableSignalPorts2s.FirstOrDefaultAsync(x =>
-            x.Olt == olt && x.Lt == lt && x.Pon == pon && x.Town == town && x.Fdh == fdh && x.Splitter == splitter);
+            x.Olt == olt && x.Olt != null 
+            && x.Lt == lt && x.Lt != null
+            && x.Pon == pon && x.Pon != null
+            && x.Town == town && x.Town != null 
+            && x.Fdh == fdh && x.Fdh != null
+            && x.Splitter == splitter && x.Splitter != null);
     }
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
