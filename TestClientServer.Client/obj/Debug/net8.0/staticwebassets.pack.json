@@ -1,39 +1,39 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\obj\\Debug\\net8.0\\compressed\\2de05tpysy.gz",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\obj\\Debug\\net8.0\\compressed\\2de05tpysy.gz",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TestClientServer.Client.styles.css",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TestClientServer.Client.styles.css",
       "PackagePath": "staticwebassets\\TestClientServer.Client.styles.css"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\css\\app.css",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\icon-192.png",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
-      "Id": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Client\\wwwroot\\index.html",
+      "Id": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {

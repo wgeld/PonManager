@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zzp1xsXmleHUVIhw7V8VJiiqO3tExUqYGVGM/oLbkZ1cenxFvowDwYZKN/b0plkwmQWEilU5/XY2DZBio+3HyA==",
+  "dgSpecHash": "eAG23n07q43vyr7Pf5olJJR/LcumJYqPkEi4Mu/zraSw+MbD7Wp0usEA8e3VYblIiP4pVgMo3IpHZM5dmX8isw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ddagostino\\repos\\TestClientServer\\TestClientServer\\TestClientServer.Server\\TestClientServer.Server.csproj",
+  "projectFilePath": "C:\\Users\\ddagostino\\repos\\PonManager\\PonManager\\TestClientServer.Server\\TestClientServer.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ddagostino\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\ddagostino\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

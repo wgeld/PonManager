@@ -6,7 +6,7 @@ namespace TestClientServer.Server.Controllers;
 
 [ApiController]
 [Route("formdata")]
-    public class PonTagController(
+    public class PonLightUpController(
         IAvailableSignalPorts2Service asp2Service,
         IEquipmentService equipmentService,
         IUtilityService utilityService) 
@@ -28,7 +28,7 @@ namespace TestClientServer.Server.Controllers;
                 if (checkWcfMgmtOltResult is OkObjectResult)
                     return Ok("PON exists WCFEquip");
                 
-                //Need to split the splitter input at the '.' to extract the splitterCard. 
+                //Splitter Cards gets passed as (ex. '23.2A'). Need to split the splitter input at the '.' to extract the splitterCard (ex. '2A'). 
                 var splitterCard = utilityService.CreateSplitterCard(splitter);
                 var checkWcfMgmtFdhResult = await CheckWcfFdhPath(fdh, splitterCard, town);
                 if (checkWcfMgmtFdhResult is OkObjectResult)
