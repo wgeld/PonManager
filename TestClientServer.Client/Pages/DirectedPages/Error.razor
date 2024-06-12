@@ -1,0 +1,19 @@
+﻿@page "/error"
+@inject NavigationManager NavigationManager
+@layout MainLayout 
+<h3>Error</h3>
+<div class="container mt-4">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> There was an invalid entry. Please try again.
+    </div>
+    <div class="mt-3">
+        <button class="btn btn-primary" @onclick="Retry">Retry</button>
+    </div>
+</div>
+
+@code {
+    void Retry()
+    {
+        NavigationManager.NavigateTo("/PonTag", forceLoad: true); // Adjust as necessary
+    }
+}
