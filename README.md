@@ -6,9 +6,6 @@ Welcome to the PON Manager repository! This application is designed to manage PO
 - [Introduction](#introduction)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 The PON Manager application is a tool designed to facilitate the management and operation of PONs. This repository will house the codebase for the application, and new features will be developed and tracked in separate branches. Currently, the application supports two primary functions:
