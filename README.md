@@ -31,6 +31,14 @@ To get a copy of the PON Manager application up and running on your local machin
 
 ### Installation
 1. **Clone the repository**:
-   ```bash
    git clone https://github.com/your-username/pon-manager.git
+2. **Restore dependencies and build the project**:
+   dotnet restore
+   dotnet build
+## Usage
+To run the application locally:
+   dotnet run
+
+
+
 
