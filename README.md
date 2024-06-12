@@ -3,9 +3,13 @@
 Welcome to the PON Manager repository! This application is designed to manage PON (Passive Optical Network) operations, featuring PON search and PON Light Up functionalities.
 
 ## Table of Contents
+- [Documenataion](#documentation)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Getting Started](#getting-started)
+
+## Documentation
+- [Confluence Documentation for PON Light Up](https://wgeld.atlassian.net/wiki/spaces/ADD/pages/401866754/PON+Light+Up+-+Documentation+Directory)
 
 ## Introduction
 The PON Manager application is a tool designed to facilitate the management and operation of PONs. This repository will house the codebase for the application, and new features will be developed and tracked in separate branches. Currently, the application supports two primary functions:
