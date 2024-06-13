@@ -12,11 +12,114 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b4a793b-d32e-4566-96cf-76f89ee26c10" name="Changes" comment="" />
+    <list default="true" id="3b4a793b-d32e-4566-96cf-76f89ee26c10" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TestClientServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TestClientServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Client.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/TestClientServer.Shared.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.pdb.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.pdb.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.wasm.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Client.wasm.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.pdb.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.pdb.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.wasm.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/TestClientServer.Shared.wasm.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/TestClientServer.Client.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/blazor.boot.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/blazor.boot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/fveyapdap7.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/fveyapdap7.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/inxg0vwzae.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/inxg0vwzae.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/kkvulnb1pz.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/kkvulnb1pz.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/rldpn3d0oj.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/rldpn3d0oj.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/tis8hebp5y.gz" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/compressed/tis8hebp5y.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/ref/TestClientServer.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/ref/TestClientServer.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/refint/TestClientServer.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/refint/TestClientServer.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/scopedcss/bundle/TestClientServer.Client.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/scopedcss/bundle/TestClientServer.Client.styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/scopedcss/projectbundle/TestClientServer.Client.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/scopedcss/projectbundle/TestClientServer.Client.bundle.scp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.TestClientServer.Client.Microsoft.AspNetCore.StaticWebAssets.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.TestClientServer.Client.Microsoft.AspNetCore.StaticWebAssets.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.build.TestClientServer.Client.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.build.TestClientServer.Client.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TestClientServer.Client.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TestClientServer.Client.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TestClientServer.Client.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TestClientServer.Client.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/tmp-webcil/TestClientServer.Client.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/tmp-webcil/TestClientServer.Client.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/tmp-webcil/TestClientServer.Shared.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/tmp-webcil/TestClientServer.Shared.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/webcil/TestClientServer.Client.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/webcil/TestClientServer.Client.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/webcil/TestClientServer.Shared.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/Debug/net8.0/webcil/TestClientServer.Shared.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/TestClientServer.Client.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/TestClientServer.Client.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Client/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Client.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Server.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/bin/Debug/net8.0/TestClientServer.Shared.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/TestClientServer.Server.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/ref/TestClientServer.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/ref/TestClientServer.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/refint/TestClientServer.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/refint/TestClientServer.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.build.TestClientServer.Server.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.build.TestClientServer.Server.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TestClientServer.Server.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TestClientServer.Server.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TestClientServer.Server.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TestClientServer.Server.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/TestClientServer.Server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/TestClientServer.Server.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Server/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Server/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/bin/Debug/net8.0/TestClientServer.Shared.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/TestClientServer.Shared.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/ref/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/ref/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/refint/TestClientServer.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/Debug/net8.0/refint/TestClientServer.Shared.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/TestClientServer.Shared.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/TestClientServer.Shared.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestClientServer.Shared/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestClientServer.Shared/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -26,9 +129,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2hmcKQEWaG2u88cjF721iYoGgan" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,6 +141,7 @@
   "keyToString": {
     ".NET Launch Settings Profile.TestClientServer.Server: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -154,6 +258,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718202630637</updated>
       <workItem from="1718202633969" duration="9283000" />
+      <workItem from="1718213972581" duration="5032000" />
     </task>
     <servers />
   </component>
