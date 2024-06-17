@@ -13,43 +13,43 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = TestClientServer.Client
 build_property.RootNamespace = TestClientServer.Client
-build_property.ProjectDir = C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Client\
+build_property.ProjectDir = C:\Users\ddagostino\repos\PonManager\PonManager\TestClientServer.Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ddagostino\repos\TestClientServer\TestClientServer\TestClientServer.Client
+build_property.MSBuildProjectDirectory = C:\Users\ddagostino\repos\PonManager\PonManager\TestClientServer.Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/App.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/DirectedPages/Confirmation.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/Confirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xDb25maXJtYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/DirectedPages/Error.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/DirectedPages/PonExists.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/PonExists.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xQb25FeGlzdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Pages/UserInputPages/PonTag.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/UserInputPages/PonTag.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcklucHV0UGFnZXNcUG9uVGFnLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/_Imports.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Layout/MainLayout.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-5i0jcabpgl
 
-[C:/Users/ddagostino/repos/TestClientServer/TestClientServer/TestClientServer.Client/Layout/NavMenu.razor]
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-7rcyuq7olr
