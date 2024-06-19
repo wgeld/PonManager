@@ -99,8 +99,8 @@
         var fsa = query.Get("fdh");
         
         // Construct the URL with inputs
-        var url = $"formdata/GetPon?olt={olt}&lt={lt}&pon={pon}&town={Uri.EscapeDataString(town)}&fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
-        var response = await Http.GetAsync(url);
+        var equipUrl = $"formdata/GetPon?olt={olt}&lt={lt}&pon={pon}&town={Uri.EscapeDataString(town)}&fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
+        var response = await Http.GetAsync(equipUrl);
         
         if (response.IsSuccessStatusCode)
         {
