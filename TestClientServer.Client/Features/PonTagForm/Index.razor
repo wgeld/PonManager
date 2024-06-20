@@ -1,4 +1,4 @@
-﻿@page "/pontag"
+﻿@page "/"
 @using TestClientServer.Shared.Models.Client
 @inject HttpClient Http
 @inject NavigationManager Navigation
@@ -17,10 +17,7 @@
         <h2>Enter PON Details:</h2>
     </div>
     
-    <div class="form-group half-width-form-control">
-        <label for="fsa">FSA:</label>
-        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
-    </div>
+
     
     <div class="form-group half-width-form-control">
         <label for="olt">OLT:</label>
@@ -47,11 +44,16 @@
         <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-input">
             @foreach (var option in _ponOptions)
             {
-            <option value="@option">@option</option>
+                <option value="@option">@option</option>
             }
         </InputSelect>
     </div>
-
+    
+    <div class="form-group half-width-form-control">
+        <label for="fsa">FSA:</label>
+        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
+    </div>
+    
     <div class="form-group half-width-form-control">
         <label for="splitter">Splitter:</label>
         <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-input">
@@ -96,10 +98,7 @@
             <div class="modal-body">
                 <table class="table table-bordered">
                     <tbody>
-                        <tr>
-                            <td><strong>FSA:</strong></td>
-                            <td>@_currentEntry.Fsa</td>
-                        </tr>
+
                         <tr>
                             <td><strong>OLT:</strong></td>
                             <td>@_currentEntry.Olt</td>
@@ -111,6 +110,10 @@
                         <tr>
                             <td><strong>PON:</strong></td>
                             <td>@_currentEntry.Pon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FSA:</strong></td>
+                            <td>@_currentEntry.Fsa</td>
                         </tr>
                         <tr>
                             <td><strong>Splitter:</strong></td>

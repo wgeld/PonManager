@@ -26,24 +26,24 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/Confirmation.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xDb25maXJtYXRpb24ucmF6b3I=
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Features/Login/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = RmVhdHVyZXNcTG9naW5cSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xFcnJvci5yYXpvcg==
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Features/PonTagForm/Confirmation.razor]
+build_metadata.AdditionalFiles.TargetPath = RmVhdHVyZXNcUG9uVGFnRm9ybVxDb25maXJtYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/DirectedPages/PonExists.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0ZWRQYWdlc1xQb25FeGlzdHMucmF6b3I=
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Features/PonTagForm/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = RmVhdHVyZXNcUG9uVGFnRm9ybVxFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/UserInputPages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcklucHV0UGFnZXNcSG9tZS5yYXpvcg==
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Features/PonTagForm/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = RmVhdHVyZXNcUG9uVGFnRm9ybVxJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Pages/UserInputPages/PonTag.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcklucHV0UGFnZXNcUG9uVGFnLnJhem9y
+[C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/Features/PonTagForm/PonExists.razor]
+build_metadata.AdditionalFiles.TargetPath = RmVhdHVyZXNcUG9uVGFnRm9ybVxQb25FeGlzdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ddagostino/repos/PonManager/PonManager/TestClientServer.Client/_Imports.razor]

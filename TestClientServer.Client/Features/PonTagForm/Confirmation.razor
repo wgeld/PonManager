@@ -32,7 +32,7 @@
                 <tbody>
                 @foreach (var equipment in _equipmentRecords)
                 {
-                    if (equipment.EquId.StartsWith("F"))
+                    if (equipment?.EquId.StartsWith("F") == true)
                     {
                         <tr>
                             <td>@equipment.EquClass</td>
@@ -63,7 +63,7 @@
                 <tbody>
                 @foreach (var equipment in _equipmentRecords)
                 {
-                    if (equipment.EquId.StartsWith("N"))
+                    if (equipment?.EquId.StartsWith("N") == true)
                     {
                         <tr>
                             <td>@equipment.EquClass</td>
@@ -107,7 +107,7 @@
             _equipmentRecords = await JsonSerializer.DeserializeAsync<List<WcfMgmtEquipment>>(
                 await response.Content.ReadAsStreamAsync(),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
-            );
+            ) ?? new List<WcfMgmtEquipment>();
             _equipmentRecords = _equipmentRecords
                 .OrderBy(e => e.SplitterTail)
                 .ThenBy(e => e.Ont)
