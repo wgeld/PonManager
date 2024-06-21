@@ -19,4 +19,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Login\Components\" />
+    <Folder Include="Features\PonTagForm\Components\" />
+  </ItemGroup>
+
 </Project>
