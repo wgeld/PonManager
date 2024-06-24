@@ -62,6 +62,29 @@ namespace TestClientServer.Server.Controllers;
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
+        /*******************************************************************/
+        /* Delete the Newly Created Equipments Records on Undo Submission **/
+        /*******************************************************************/
+        [HttpDelete("DeletePon")]
+        public async Task<IActionResult> UndoEquipmentRecord(int olt, int lt, int pon, string town, string fdh,
+            string splitterCard)
+        {
+            try
+            {
+                await asp2Service.DeletePonTagRecord(olt, lt, pon, town, fdh, splitterCard);
+                for (int i = 1; i <= 16; i++)
+                {
+                    await equipmentService.DeletePonTagRecordEquip(olt, lt, pon, town, fdh, splitterCard, i);
+                }
+                return Ok("Undo Successful");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
+            
+        }
         /*******************************************************************/
         /******* Check WCFEquipments to See If Olt Path Already Exists *****/
         /*******************************************************************/

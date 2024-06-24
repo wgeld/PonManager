@@ -1,6 +1,19 @@
 ﻿@page "/UndoConfirmation"
-<h3>UndoConfirmation</h3>
+@inject NavigationManager Navigation
+
+<PageTitle>Undo Successful</PageTitle>
+<br/>
+<h3>Undo Successful</h3>
+<br/>
+<div class="alert alert-success" role="alert">
+    Your previous PON Tag submission has been successfully undone.
+</div>
+
+<button class="btn btn-primary" @onclick="GoHome">Return Home</button>
 
 @code {
-    
+    private void GoHome()
+    {
+        Navigation.NavigateTo("/");
+    }
 }

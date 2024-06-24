@@ -28,5 +28,18 @@ public class AvailableSignalPorts2Service(WcfMgmtTestContext context) : IAvailab
         await context.SaveChangesAsync();
         return addedEntity.Entity;
     }
-    
+
+    public async Task DeletePonTagRecord(int olt, int lt, int pon, string town, string fdh, string splitterCard)
+    {
+        var ponTag = await context.AvailableSignalPorts2s.FirstOrDefaultAsync(pt =>
+            pt.Olt == olt &&
+            pt.Lt == lt &&
+            pt.Pon == pon &&
+            pt.Town == town &&
+            pt.Fdh == fdh &&
+            pt.SplitterCard == splitterCard);
+
+        if (ponTag != null) context.AvailableSignalPorts2s.Remove(ponTag);
+        await context.SaveChangesAsync();
+    }
 }

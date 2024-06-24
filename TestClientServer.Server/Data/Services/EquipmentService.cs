@@ -37,6 +37,29 @@ public class EquipmentService : IEquipmentService
         return await _context.WcfMgmtEquipments.FirstOrDefaultAsync(x =>
             x.Fdh == fdh && x.SplitterCard == splitterCard && x.Town == town);
     }
+
+    public async Task DeletePonTagRecordEquip(int olt, int lt, int pon, string town, string fdh, string splitterCard, int i)
+    {
+        var ontTag = 
+            await _context.WcfMgmtEquipments.FirstOrDefaultAsync(ot =>
+            ot.Olt == olt &&
+            ot.Lt == lt &&
+            ot.Pon == pon &&
+            ot.Town == town &&
+            ot.Ont == i);
+        
+        var fdhTag = await _context.WcfMgmtEquipments.FirstOrDefaultAsync(ft =>
+            ft.Fdh == fdh &&
+            ft.SplitterCard == splitterCard &&
+            ft.Town == town &&
+            ft.SplitterTail == i
+        );
+
+        if (ontTag != null) _context.WcfMgmtEquipments.Remove(ontTag);
+        if (fdhTag != null) _context.WcfMgmtEquipments.Remove(fdhTag);
+        await _context.SaveChangesAsync();
+    }
+
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
     /*******************************************************************/
