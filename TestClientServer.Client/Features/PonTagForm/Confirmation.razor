@@ -7,8 +7,9 @@
 @inject NavigationManager NavigationManager;
 
 <div class="container mt-4">
-    <div class="mt-3">
+    <div class="mt-3 flex-container" >
         <a href="/" class="btn btn-primary">Return Home</a>
+        <button class="btn btn-danger" @onclick="UndoButtonSubmit">Undo</button>
     </div>
     <br/>
     <div class="alert alert-success">
@@ -90,18 +91,18 @@
     {
         var uri = new Uri(NavigationManager.Uri);
         var query = HttpUtility.ParseQueryString(uri.Query);
-        
+
         var olt = query.Get("olt");
         var lt = query.Get("lt");
         var pon = query.Get("pon");
         var town = query.Get("town");
-        var splitter = query.Get("splitter"); 
+        var splitter = query.Get("splitter");
         var fsa = query.Get("fdh");
-        
+
         // Construct the URL with inputs
         var equipUrl = $"formdata/GetPon?olt={olt}&lt={lt}&pon={pon}&town={Uri.EscapeDataString(town)}&fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
         var response = await Http.GetAsync(equipUrl);
-        
+
         if (response.IsSuccessStatusCode)
         {
             _equipmentRecords = await JsonSerializer.DeserializeAsync<List<WcfMgmtEquipment>>(
@@ -115,12 +116,44 @@
         }
         else
         {
-            //Handle the case if the HTTP request fails
-            _equipmentRecords = new List<WcfMgmtEquipment>(); 
+            //Handle the case if the API request fails
+            _equipmentRecords = new List<WcfMgmtEquipment>();
         }
+    }
+
+    private async Task UndoButtonSubmit()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = HttpUtility.ParseQueryString(uri.Query);
+
+        var olt = query.Get("olt");
+        var lt = query.Get("lt");
+        var pon = query.Get("pon");
+        var town = query.Get("town");
+        var splitter = query.Get("splitter");
+        var fsa = query.Get("fdh");
+        
+        var equipUrl = $"formdata/DeletePon?olt={olt}&lt={lt}&pon={pon}&town={Uri.EscapeDataString(town)}&fdh={Uri.EscapeDataString(fsa)}&splitterCard={Uri.EscapeDataString(splitter)}";
+        var response = await Http.DeleteAsync(equipUrl);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var responseString = await response.Content.ReadAsStringAsync();
+            if (responseString.Contains("Undo Successful"))
+            {
+                NavigationManager.NavigateTo("/UndoConfirmation");
+            }
+        }
+        
     }
 }
 <style>
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;  /* Align items on opposite ends */
+    }
+
     .table {
         width: 100%;
         border-collapse: collapse;
