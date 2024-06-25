@@ -8,5 +8,4 @@ public interface IEquipmentService
     Task<WcfMgmtEquipment?> WcfGetOltDetailsAsync(int olt, int lt, int pon, string town);
     Task<WcfMgmtEquipment?> WcfGetFdhDetailsAsync(string fdh, string splitterCard, string town);
     Task DeletePonTagRecordEquip(List<WcfMgmtEquipment?> deleteRecords);
-    // Task DeletePonTagRecordEquipAdo(int olt, int lt, int pon, string town, string fdh, string splitterCard);
 }

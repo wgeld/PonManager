@@ -103,21 +103,6 @@ namespace TestClientServer.Server.Controllers;
             }
             //  SET Statistics IO ON;
         }
-        // [HttpDelete("DeletePon")]
-        // public async Task<IActionResult> UndoEquipmentRecordAdo(int olt, int lt, int pon, string town, string fdh,
-        //     string splitterCard)
-        // {
-        //     try
-        //     {
-        //         await asp2Service.DeletePonTagRecord(olt, lt, pon, town, fdh, splitterCard);
-        //         await equipmentService.DeletePonTagRecordEquipAdo(olt, lt, pon, town, fdh, splitterCard);
-        //         return Ok("Undo Successful");
-        //     }
-        //     catch (Exception)
-        //     {
-        //         return StatusCode(500, "Internal Server Error");
-        //     }
-        // }
         /*******************************************************************/
         /******* Check WCFEquipments to See If Olt Path Already Exists *****/
         /*******************************************************************/
