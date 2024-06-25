@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -65,7 +64,7 @@ public class EquipmentService : IEquipmentService
 
         var sql = $"DELETE FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
         
-        await _context.Database.ExecuteSqlRawAsync(sql, parameters.ToArray());
+        await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
 
 
