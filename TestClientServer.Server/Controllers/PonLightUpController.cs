@@ -77,9 +77,21 @@ namespace TestClientServer.Server.Controllers;
                 var deleteRecords = new List<WcfMgmtEquipment?>();
                 for (var i = 1; i <= 16; i++)
                 {
-                    var splitter = fdh + '.' + splitterCard;
-                    deleteRecords.Add(CreateOntPath(olt, lt, pon,i, town));
-                    deleteRecords.Add(CreateFdhPath(fdh, splitter, i, town));
+                    var equipIdOnt = utilityService.CreateEquipIdOnt(olt, lt, pon, i);
+                    var ontRecord = new WcfMgmtEquipment
+                    {
+                        EquId = equipIdOnt,
+                        Town = town
+                    };
+                    deleteRecords.Add(ontRecord);
+                
+                    var equipIdFdh = utilityService.CreateEquipIdFdh(fdh, splitterCard, i);
+                    var fdhRecord = new WcfMgmtEquipment
+                    {
+                        EquId = equipIdFdh,
+                        Town = town
+                    };
+                    deleteRecords.Add(fdhRecord);
                 }
                 await equipmentService.DeletePonTagRecordEquip(deleteRecords);
                 
@@ -91,6 +103,21 @@ namespace TestClientServer.Server.Controllers;
             }
             //  SET Statistics IO ON;
         }
+        // [HttpDelete("DeletePon")]
+        // public async Task<IActionResult> UndoEquipmentRecordAdo(int olt, int lt, int pon, string town, string fdh,
+        //     string splitterCard)
+        // {
+        //     try
+        //     {
+        //         await asp2Service.DeletePonTagRecord(olt, lt, pon, town, fdh, splitterCard);
+        //         await equipmentService.DeletePonTagRecordEquipAdo(olt, lt, pon, town, fdh, splitterCard);
+        //         return Ok("Undo Successful");
+        //     }
+        //     catch (Exception)
+        //     {
+        //         return StatusCode(500, "Internal Server Error");
+        //     }
+        // }
         /*******************************************************************/
         /******* Check WCFEquipments to See If Olt Path Already Exists *****/
         /*******************************************************************/

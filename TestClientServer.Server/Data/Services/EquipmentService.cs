@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Data;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using Microsoft.Data.SqlClient;
 using TestClientServer.Shared.Models.DBContext;
@@ -38,11 +40,34 @@ public class EquipmentService : IEquipmentService
             x.Fdh == fdh && x.SplitterCard == splitterCard && x.Town == town);
     }
 
-    public async Task DeletePonTagRecordEquip(IEnumerable<WcfMgmtEquipment?> deleteRecords)
+    [SuppressMessage("ReSharper.DPA", "DPA0009: High execution time of DB command", MessageId = "time: 1530ms")]
+    public async Task DeletePonTagRecordEquip(List<WcfMgmtEquipment?> deleteRecords)
     {
-        _context.WcfMgmtEquipments.RemoveRange(deleteRecords.Where(record => record != null)!);
-        await _context.SaveChangesAsync();
+        // Filter out any null entries or entries with null EquId or Town
+        var validRecords = deleteRecords.Where(r => r != null && r.EquId != null && r.Town != null).ToList();
+
+        var parameters = new List<SqlParameter>();
+        var conditions = new List<string>();
+
+        var paramIndex = 0;
+        foreach (var record in validRecords)
+        {
+            var equIdParamName = $"@equId{paramIndex}";
+            var townParamName = $"@town{paramIndex}";
+
+            parameters.Add(new SqlParameter(equIdParamName, record!.EquId));
+            parameters.Add(new SqlParameter(townParamName, record.Town));
+
+            conditions.Add($"(EquId = {equIdParamName} AND Town = {townParamName})");
+        
+            paramIndex++;
+        }
+
+        var sql = $"DELETE FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
+        
+        await _context.Database.ExecuteSqlRawAsync(sql, parameters.ToArray());
     }
+
 
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
