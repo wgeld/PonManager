@@ -73,17 +73,23 @@ namespace TestClientServer.Server.Controllers;
             try
             {
                 await asp2Service.DeletePonTagRecord(olt, lt, pon, town, fdh, splitterCard);
-                for (int i = 1; i <= 16; i++)
+                
+                var deleteRecords = new List<WcfMgmtEquipment?>();
+                for (var i = 1; i <= 16; i++)
                 {
-                    await equipmentService.DeletePonTagRecordEquip(olt, lt, pon, town, fdh, splitterCard, i);
+                    var splitter = fdh + '.' + splitterCard;
+                    deleteRecords.Add(CreateOntPath(olt, lt, pon,i, town));
+                    deleteRecords.Add(CreateFdhPath(fdh, splitter, i, town));
                 }
+                await equipmentService.DeletePonTagRecordEquip(deleteRecords);
+                
                 return Ok("Undo Successful");
             }
             catch (Exception)
             {
                 return StatusCode(500, "Internal Server Error");
             }
-            
+            //  SET Statistics IO ON;
         }
         /*******************************************************************/
         /******* Check WCFEquipments to See If Olt Path Already Exists *****/

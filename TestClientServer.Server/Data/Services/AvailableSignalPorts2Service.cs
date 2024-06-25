@@ -20,7 +20,7 @@ public class AvailableSignalPorts2Service(WcfMgmtTestContext context) : IAvailab
             && x.Splitter == splitter && x.Splitter != null);
     }
     /*******************************************************************/
-    /********* Add List of Equipment Records to WCFEquip Table *********/
+    /************ Add Pon Path Record to ASP2 Table ********************/
     /*******************************************************************/
     public async Task<AvailableSignalPorts2?> AddNewPonPathAsp2(AvailableSignalPorts2? newRecord)
     {
@@ -28,7 +28,10 @@ public class AvailableSignalPorts2Service(WcfMgmtTestContext context) : IAvailab
         await context.SaveChangesAsync();
         return addedEntity.Entity;
     }
-
+    
+    /*******************************************************************/
+    /************ Delete Pon Path Record from ASP2 Table ***************/
+    /*******************************************************************/
     public async Task DeletePonTagRecord(int olt, int lt, int pon, string town, string fdh, string splitterCard)
     {
         var ponTag = await context.AvailableSignalPorts2s.FirstOrDefaultAsync(pt =>
