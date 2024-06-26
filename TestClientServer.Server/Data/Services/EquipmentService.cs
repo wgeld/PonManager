@@ -64,7 +64,7 @@ public class EquipmentService : IEquipmentService
             paramIndex++;
         }
 
-        var sql = $"DELETE FROM [wcfMgmt].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
+        var sql = $"DELETE FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
         
         await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
