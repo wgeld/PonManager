@@ -69,6 +69,49 @@ public class EquipmentService : IEquipmentService
         await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
 
+    public async Task<List<WcfMgmtEquipment?>> GetRecentPonRecords(int recentTimeFrame)
+    {
+        DateTime startDate = DateTime.Now.AddDays(-recentTimeFrame);
+
+        var fdhRecords = await _context.WcfMgmtEquipments
+            .Where(e => e.CreatedDate >= startDate)
+            .GroupBy(e => new { e.EquClass, e.Fdh, e.SplitterCard, e.Town })
+            .Select(g => g.FirstOrDefault())
+            .Where(e => e != null) // Ensure non-null entries
+            .Select(e => new WcfMgmtEquipment
+            {
+                EquClass = e.EquClass,
+                Fdh = e.Fdh,
+                SplitterCard = e.SplitterCard,
+                Town = e.Town,
+                CreatedDate = e.CreatedDate,
+                CreatedBy = e.CreatedBy
+            })
+            .ToListAsync();
+
+        var ontRecords = await _context.WcfMgmtEquipments
+            .Where(e => e.CreatedDate >= startDate)
+            .GroupBy(e => new { e.EquClass, e.Olt, e.Lt, e.Pon, e.Town })
+            .Select(g => g.FirstOrDefault())
+            .Where(e => e != null) // Ensure non-null entries
+            .Select(e => new WcfMgmtEquipment
+            {
+                EquClass = e.EquClass,
+                Olt = e.Olt,
+                Lt = e.Lt,
+                Pon = e.Pon,
+                Town = e.Town,
+                CreatedDate = e.CreatedDate,
+                CreatedBy = e.CreatedBy
+            })
+            .ToListAsync();
+
+        var records = fdhRecords.Concat(ontRecords).ToList();
+
+        return records;
+    }
+
+
 
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
