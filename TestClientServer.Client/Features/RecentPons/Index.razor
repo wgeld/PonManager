@@ -3,14 +3,18 @@
 @using TestClientServer.Shared.Models.Server
 @layout MainLayout
 @inject HttpClient Http
-
+<div class="mt-3 flex-container" >
+    <a href="/" class="btn btn-primary">Return Home</a>
+    <h3 class="header">Recent Light Ups</h3>
+    <button class="btn btn-success" @onclick="() => _showModal = true">Edit Look Back</button>
+</div>
 @if (_showModal)
 {
 <div class="modal-backdrop"></div>
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Select Timeframe</h5>
+            <h5 class="modal-title">Select Look Back Period (Days)</h5>
         </div>
         <div class="modal-body">
             <select @bind="_selectedTimeframe" class="form-control">
@@ -27,15 +31,25 @@
 </div>
 }
 
-<h3>Most Recent PONs</h3>
-
-<div class="mt-3 flex-container">
-    <div class="mt-3">
+@if (_isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(_errorMessage))
+{
+    <p class="text-danger">@_errorMessage</p>
+}
+else if (_equipmentRecords.Count == 0)
+{
+    <p>No records found.</p>
+}
+else
+{
+    <div class="mt-3 flex-container">
         <div class="table-container">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Class</th>
                     <th>FDH</th>
                     <th>Card</th>
                     <th>Town</th>
@@ -44,26 +58,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var equipment in _equipmentRecords)
+                @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-FDH").OrderByDescending(e => e.CreatedDate))
                 {
-                if (equipment?.EquClass.Contains("F-FDH") == true)
-                {
-                <tr>
-                    <td>@equipment.EquClass</td>
-                    <td>@equipment.Fdh</td>
-                    <td>@equipment.SplitterCard</td>
-                    <td>@equipment.Town</td>
-                    <td>@equipment.CreatedDate</td>
-                    <td>@equipment.CreatedBy</td>
-                </tr>
-                }
+                    <tr>
+                        <td>@equipment.Fdh</td>
+                        <td>@equipment.SplitterCard</td>
+                        <td>@equipment.Town</td>
+                        <td>@equipment.CreatedDate.ToString()</td>
+                        <td>@equipment.CreatedBy</td>
+                    </tr>
                 }
                 </tbody>
             </table>
+        </div>
+
+        <div class="table-container">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Class</th>
                     <th>OLT</th>
                     <th>LT</th>
                     <th>PON</th>
@@ -73,55 +85,76 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var equipment in _equipmentRecords)
+                @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-OLT").OrderByDescending(e => e.CreatedDate))
                 {
-                if (equipment?.EquClass.Contains("F-OLT") == true)
-                {
-                <tr>
-                    <td>@equipment.EquClass</td>
-                    <td>@equipment.Olt</td>
-                    <td>@equipment.Lt</td>
-                    <td>@equipment.Pon</td>
-                    <td>@equipment.Town</td>
-                    <td>@equipment.CreatedDate</td>
-                    <td>@equipment.CreatedBy</td>
-                </tr>
-                }
+                    <tr>
+                        <td>@equipment.Olt</td>
+                        <td>@equipment.Lt</td>
+                        <td>@equipment.Pon</td>
+                        <td>@equipment.Town</td>
+                        <td>@equipment.CreatedDate.ToString()</td>
+                        <td>@equipment.CreatedBy</td>
+                    </tr>
                 }
                 </tbody>
             </table>
         </div>
     </div>
-</div>
 
+
+}
 @code {
-private int _selectedTimeframe;
-private readonly List<int> _timeframes = Enumerable.Range(1, 30).ToList();
-private List<WcfMgmtEquipment> _equipmentRecords = new List<WcfMgmtEquipment>();
-private bool _showModal = true;
+    private int _selectedTimeframe = 3;  // Default to 3 day
+    private readonly List<int> _timeframes = Enumerable.Range(1, 30).ToList();
+    private List<WcfMgmtEquipment> _equipmentRecords = new();
+    private bool _showModal = false;
+    private bool _isLoading = false;
+    private string _errorMessage = string.Empty;
 
-private void OnTimeframeSelected()
-{
-    _showModal = false;
-    LoadEquipmentRecords(_selectedTimeframe);
-}
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEquipmentRecords();
+    }
 
-private async Task LoadEquipmentRecords(int selectedTimeframe)
-{
-var url = $"formdata/GetRecentPons?selectedTimeFrame={selectedTimeframe}";
-var response = await Http.GetAsync(url);
-    if (response.IsSuccessStatusCode)
+    private async Task OnTimeframeSelected()
     {
-        _equipmentRecords = await JsonSerializer.DeserializeAsync<List<WcfMgmtEquipment>>(
-        await response.Content.ReadAsStreamAsync(),
-        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
-        ) ?? new List<WcfMgmtEquipment>();
+        _showModal = false;
+        await LoadEquipmentRecords();
     }
-    else
+
+    private async Task LoadEquipmentRecords()
     {
-        _equipmentRecords = new List<WcfMgmtEquipment>();
+        _isLoading = true;
+        _errorMessage = string.Empty;
+
+        try
+        {
+            var url = $"formdata/GetRecentPons?selectedTimeFrame={_selectedTimeframe}";
+            var response = await Http.GetAsync(url);
+        
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                _equipmentRecords = JsonSerializer.Deserialize<List<WcfMgmtEquipment>>(content,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<WcfMgmtEquipment>();
+            }
+            else
+            {
+                _errorMessage = $"Error: {response.StatusCode} - {response.ReasonPhrase}";
+                _equipmentRecords = new List<WcfMgmtEquipment>();
+            }
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = $"An error occurred: {ex.Message}";
+            _equipmentRecords = new List<WcfMgmtEquipment>();
+        }
+        finally
+        {
+            _isLoading = false;
+            StateHasChanged();
+        }
     }
-}
 }
 
 <style>
@@ -151,8 +184,8 @@ var response = await Http.GetAsync(url);
         background-color: #ddd;
     }
     .table-container {
-        display: flex;
-        justify-content: space-around;
+        flex:  1;
+        margin: 0 10px;
     }
     .table {
         width: 50%; /* Adjust based on space and content */
@@ -186,33 +219,28 @@ var response = await Http.GetAsync(url);
         transform: translate(-50%, -50%);
         z-index: 1050;
     }
-
-    /* Add some padding and a border-radius to the modal content */
+    
     .modal-content {
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-
-    /* Style the modal header */
+    
     .modal-header {
         border-bottom: none;
         padding-bottom: 0;
     }
-
-    /* Style the modal title */
+    
     .modal-title {
         font-size: 1.5rem;
         font-weight: bold;
     }
-
-    /* Style the modal body */
+    
     .modal-body {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
-    /* Style the select dropdown */
+    
     .modal-body select {
         width: 100%;
         padding: 10px;
@@ -221,16 +249,14 @@ var response = await Http.GetAsync(url);
         border: 1px solid #ccc;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     }
-
-    /* Style the modal footer */
+    
     .modal-footer {
         border-top: none;
         padding-top: 0;
         display: flex;
         justify-content: flex-end;
     }
-
-    /* Style the submit button */
+    
     .modal-footer .btn-primary {
         background-color: #007bff;
         border-color: #007bff;
@@ -239,7 +265,23 @@ var response = await Http.GetAsync(url);
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
+    .table-header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    .table-container {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    .flex-container .table {
+        width: 100%;
+        margin: 0;
+    }
 
 </style>
 

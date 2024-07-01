@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -72,43 +73,72 @@ public class EquipmentService : IEquipmentService
     public async Task<List<WcfMgmtEquipment?>> GetRecentPonRecords(int recentTimeFrame)
     {
         DateTime startDate = DateTime.Now.AddDays(-recentTimeFrame);
+    
+        string fdhSql = @"
+            SELECT 
+                EquClass, 
+                Fdh, 
+                SplitterCard,  
+                MAX(CreatedDate) AS CreatedDate, 
+                CreatedBy, 
+                Town
+            FROM 
+                [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+            WHERE 
+                EquClass = 'F-FDH' 
+                AND CreatedDate >= @startDate
+            GROUP BY 
+                EquClass, Fdh, SplitterCard, CreatedBy, Town";
 
-        var fdhRecords = await _context.WcfMgmtEquipments
-            .Where(e => e.CreatedDate >= startDate)
-            .GroupBy(e => new { e.EquClass, e.Fdh, e.SplitterCard, e.Town })
-            .Select(g => g.FirstOrDefault())
-            .Where(e => e != null) // Ensure non-null entries
+        var parameters = new[] { new SqlParameter("@startDate", startDate) };
+
+        var fdhResults = await _context.Set<WcfMgmtEquipment>()
+            .FromSqlRaw(fdhSql, parameters)
             .Select(e => new WcfMgmtEquipment
             {
                 EquClass = e.EquClass,
                 Fdh = e.Fdh,
                 SplitterCard = e.SplitterCard,
-                Town = e.Town,
                 CreatedDate = e.CreatedDate,
-                CreatedBy = e.CreatedBy
+                CreatedBy = e.CreatedBy,
+                Town = e.Town
             })
             .ToListAsync();
 
-        var ontRecords = await _context.WcfMgmtEquipments
-            .Where(e => e.CreatedDate >= startDate)
-            .GroupBy(e => new { e.EquClass, e.Olt, e.Lt, e.Pon, e.Town })
-            .Select(g => g.FirstOrDefault())
-            .Where(e => e != null) // Ensure non-null entries
+        string oltSql = @"
+                SELECT 
+                    EquClass, 
+                    Olt, 
+                    Lt, 
+                    Pon, 
+                    MAX(CreatedDate) AS CreatedDate, 
+                    CreatedBy, 
+                    Town
+                FROM 
+                    [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+                WHERE 
+                    EquClass = 'F-OLT' 
+                    AND CreatedDate >= @startDate
+                GROUP BY 
+                    EquClass, Olt, Lt, Pon, CreatedBy, Town";
+        
+        var oltParameters = new[] { new SqlParameter("@startDate", startDate) };
+        
+        var oltResults = await _context.Set<WcfMgmtEquipment>()
+            .FromSqlRaw(oltSql, oltParameters)
             .Select(e => new WcfMgmtEquipment
             {
                 EquClass = e.EquClass,
                 Olt = e.Olt,
                 Lt = e.Lt,
                 Pon = e.Pon,
-                Town = e.Town,
                 CreatedDate = e.CreatedDate,
-                CreatedBy = e.CreatedBy
+                CreatedBy = e.CreatedBy,
+                Town = e.Town
             })
             .ToListAsync();
 
-        var records = fdhRecords.Concat(ontRecords).ToList();
-
-        return records;
+        return fdhResults.Concat(oltResults).ToList();
     }
 
 

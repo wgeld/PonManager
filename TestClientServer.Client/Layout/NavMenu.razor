@@ -12,15 +12,16 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column align-items-center">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/">
-                <span aria-hidden="true"></span> PON Light Up
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="/RecentPons">
                 <span aria-hidden="true"></span> Recent Light Ups
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/">
+                <span aria-hidden="true"></span> PON Light Up
+            </NavLink>
+        </div>
+
     </nav>
 </div>
 
@@ -53,12 +54,12 @@
     }
 
     .navbar-logo {
-        height: 100px; /* Adjust as needed */
+        height: 120px; 
     }
 
     .nav-scrollable {
         width: 100%;
-        background-color: #592B83; /* Match the navbar color */
+        background-color: #592B83;
         padding: 10px 0;
     }
 
@@ -73,13 +74,15 @@
     }
 
     .nav-link {
-        color: white; /* Adjust link color */
-        font-size: 1.2em; /* Adjust font size */
+        color: white;
+        font-size: 1.2em;
         text-decoration: none;
+        transition: all 0.3s ease;
     }
 
     .nav-link:hover {
-        color: #ddd; /* Adjust hover color */
+        color: #ddd;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
     .nav-link .bi {
