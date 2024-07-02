@@ -69,7 +69,9 @@ public class EquipmentService : IEquipmentService
         
         await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
-
+    /*******************************************************************/
+    /********* Get a List of the Recently Created Pons  ****************/
+    /*******************************************************************/
     public async Task<List<WcfMgmtEquipment?>> GetRecentPonRecords(int recentTimeFrame)
     {
         DateTime startDate = DateTime.Now.AddDays(-recentTimeFrame);
@@ -140,9 +142,7 @@ public class EquipmentService : IEquipmentService
 
         return fdhResults.Concat(oltResults).ToList();
     }
-
-
-
+    
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
     /*******************************************************************/

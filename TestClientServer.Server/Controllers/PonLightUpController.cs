@@ -15,7 +15,6 @@ namespace TestClientServer.Server.Controllers;
         /*******************************************************************/
         /*********** Master Controller. PON Form Data Passes Here **********/
         /*******************************************************************/
-        
         [HttpPost("PostPon")]
         public async Task<IActionResult> PostPonDetailsAsync(int olt, int lt, int pon, string town, string fdh, string splitter)
         {
@@ -47,6 +46,10 @@ namespace TestClientServer.Server.Controllers;
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request: " + ex.Message);
             }
         }
+        
+        /*******************************************************************/
+        /******* Check WCFEquipments to Get Recent PON Paths Created *******/
+        /*******************************************************************/
         [HttpGet("GetRecentPons")]
         public async Task<IActionResult> GetNewPonRecords(int selectedTimeFrame)
         {

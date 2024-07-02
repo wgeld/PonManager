@@ -4,13 +4,17 @@
 @layout MainLayout
 @inject HttpClient Http
 
-<br/>
 <div class="mt-3 flex-container" >
-    <a href="/" class="btn btn-primary">Return Home</a>
-    <h3 class="header">Recent Light Ups</h3>
+    <a href="/PonLight" class="btn btn-primary">Return Home</a>
     <button class="btn btn-success" @onclick="() => _showModal = true">Edit Look Back</button>
 </div>
-<br/>
+<div class="mt-3 flex-container1">
+    <h3 class="header">Recent PON Tag Entries</h3>
+</div>
+<div class="mt-3 flex-container1">
+    <h4 class="header">@CalculatedDateRange(_selectedTimeframe, DateTime.Now).ToString("d") - @DateTime.Now.ToString("d")</h4>
+</div>
+
 
 
 @if (_showModal)
@@ -19,7 +23,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Select Look Back Period (Days)</h5>
+            <h5 class="modal-title">Select Look Back Days</h5>
         </div>
         <div class="modal-body">
             <select @bind="_selectedTimeframe" class="form-control">
@@ -116,7 +120,8 @@ else
     private bool _showModal = false;
     private bool _isLoading = false;
     private string _errorMessage = string.Empty;
-
+    private DateTime _today = DateTime.Now;
+    
     protected override async Task OnInitializedAsync()
     {
         await LoadEquipmentRecords();
@@ -161,6 +166,13 @@ else
             StateHasChanged();
         }
     }
+    
+    private DateTime CalculatedDateRange(int timeFrame, DateTime today)
+    {
+        var startDate = DateTime.Now.AddDays(-timeFrame);
+        return startDate;
+    }
+
 }
 
 <style>
@@ -215,12 +227,16 @@ else
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 1040;
     }
-
+    .flex-container1 {
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center; /* Centers vertically */
+    }
     /* Style the modal container */
     .modal-dialog {
         position: fixed;
-        top: 50%;
-        left: 50%;
+        top: 20%;
+        left: 55%;
         transform: translate(-50%, -50%);
         z-index: 1050;
     }
@@ -277,6 +293,10 @@ else
     .flex-container .table {
         width: 100%;
         margin: 0;
+    }
+    .header {
+        font-weight: lighter;
+        margin-bottom: 20px;
     }
 
 </style>
