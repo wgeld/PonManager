@@ -3,11 +3,16 @@
 @using TestClientServer.Shared.Models.Server
 @layout MainLayout
 @inject HttpClient Http
+
+<br/>
 <div class="mt-3 flex-container" >
     <a href="/" class="btn btn-primary">Return Home</a>
     <h3 class="header">Recent Light Ups</h3>
     <button class="btn btn-success" @onclick="() => _showModal = true">Edit Look Back</button>
 </div>
+<br/>
+
+
 @if (_showModal)
 {
 <div class="modal-backdrop"></div>
@@ -33,6 +38,7 @@
 
 @if (_isLoading)
 {
+    <br/>
     <p>Loading...</p>
 }
 else if (!string.IsNullOrEmpty(_errorMessage))
@@ -50,22 +56,22 @@ else
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Created Date</th>
                     <th>FDH</th>
                     <th>Card</th>
                     <th>Town</th>
-                    <th>Created Date</th>
-                    <th>Created By</th>
+                    @* <th>Created By</th> *@
                 </tr>
                 </thead>
                 <tbody>
                 @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-FDH").OrderByDescending(e => e.CreatedDate))
                 {
                     <tr>
+                        <td>@equipment.CreatedDate.ToString()</td>
                         <td>@equipment.Fdh</td>
                         <td>@equipment.SplitterCard</td>
                         <td>@equipment.Town</td>
-                        <td>@equipment.CreatedDate.ToString()</td>
-                        <td>@equipment.CreatedBy</td>
+                        @* <td>@equipment.CreatedBy</td> *@
                     </tr>
                 }
                 </tbody>
@@ -76,24 +82,24 @@ else
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Created Date</th>
                     <th>OLT</th>
                     <th>LT</th>
                     <th>PON</th>
                     <th>Town</th>
-                    <th>Created Date</th>
-                    <th>Created By</th>
+                    @* <th>Created By</th> *@
                 </tr>
                 </thead>
                 <tbody>
                 @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-OLT").OrderByDescending(e => e.CreatedDate))
                 {
                     <tr>
+                        <td>@equipment.CreatedDate.ToString()</td>
                         <td>@equipment.Olt</td>
                         <td>@equipment.Lt</td>
                         <td>@equipment.Pon</td>
                         <td>@equipment.Town</td>
-                        <td>@equipment.CreatedDate.ToString()</td>
-                        <td>@equipment.CreatedBy</td>
+                        @* <td>@equipment.CreatedBy</td> *@
                     </tr>
                 }
                 </tbody>
@@ -160,9 +166,8 @@ else
 <style>
     .flex-container {
         display: flex;
-        justify-content: space-between;  /* Align items on opposite ends */
+        justify-content: space-between;  
     }
-
     .table {
         width: 100%;
         border-collapse: collapse;
@@ -264,15 +269,6 @@ else
         font-size: 1rem;
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .table-header {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px;
-        font-weight: bold;
-        font-size: 1.2rem;
-        border: 1px solid #ddd;
-        text-align: center;
     }
     .table-container {
         margin-bottom: 2rem;
