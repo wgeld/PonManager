@@ -15,6 +15,7 @@ Welcome to the PON Manager repository! This application is designed to manage PO
 The PON Manager application is a tool designed to facilitate the management and operation of PONs. This repository will house the codebase for the application, and new features will be developed and tracked in separate branches. Currently, the application supports one primary function:
 
 - **PON Light Up**: Activate or light up a PON.
+- **Recent PON Light Ups**: Display the most recently lit up PONs with the ability to change the look back period. 
 
 We anticipate expanding the feature set of the PON Manager in the future to better serve the needs of its users.
 
