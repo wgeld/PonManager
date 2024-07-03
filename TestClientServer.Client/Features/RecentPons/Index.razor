@@ -4,7 +4,7 @@
 @layout MainLayout
 @inject HttpClient Http
 
-<div class="mt-3 flex-container" >
+<div class="mt-3 flex-container">
     <a href="/PonLight" class="btn btn-primary">Return Home</a>
     <button class="btn btn-success" @onclick="() => _showModal = true">Edit Look Back</button>
 </div>
@@ -14,8 +14,6 @@
 <div class="mt-3 flex-container1">
     <h4 class="header">@CalculatedDateRange(_selectedTimeframe, DateTime.Now).ToString("d") - @DateTime.Now.ToString("d")</h4>
 </div>
-
-
 
 @if (_showModal)
 {
@@ -55,7 +53,7 @@ else if (_equipmentRecords.Count == 0)
 }
 else
 {
-    <div class="mt-3 flex-container">
+    <div class="table-wrapper">
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -63,8 +61,6 @@ else
                     <th>Created Date</th>
                     <th>FDH</th>
                     <th>Card</th>
-                    <th>Town</th>
-                    @* <th>Created By</th> *@
                 </tr>
                 </thead>
                 <tbody>
@@ -74,8 +70,6 @@ else
                         <td>@equipment.CreatedDate.ToString()</td>
                         <td>@equipment.Fdh</td>
                         <td>@equipment.SplitterCard</td>
-                        <td>@equipment.Town</td>
-                        @* <td>@equipment.CreatedBy</td> *@
                     </tr>
                 }
                 </tbody>
@@ -86,33 +80,28 @@ else
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Created Date</th>
                     <th>OLT</th>
                     <th>LT</th>
                     <th>PON</th>
                     <th>Town</th>
-                    @* <th>Created By</th> *@
                 </tr>
                 </thead>
                 <tbody>
                 @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-OLT").OrderByDescending(e => e.CreatedDate))
                 {
                     <tr>
-                        <td>@equipment.CreatedDate.ToString()</td>
                         <td>@equipment.Olt</td>
                         <td>@equipment.Lt</td>
                         <td>@equipment.Pon</td>
                         <td>@equipment.Town</td>
-                        @* <td>@equipment.CreatedBy</td> *@
                     </tr>
                 }
                 </tbody>
             </table>
         </div>
     </div>
-
-
 }
+
 @code {
     private int _selectedTimeframe = 3;  // Default to 3 day
     private readonly List<int> _timeframes = Enumerable.Range(1, 30).ToList();
@@ -121,7 +110,7 @@ else
     private bool _isLoading = false;
     private string _errorMessage = string.Empty;
     private DateTime _today = DateTime.Now;
-    
+
     protected override async Task OnInitializedAsync()
     {
         await LoadEquipmentRecords();
@@ -142,7 +131,7 @@ else
         {
             var url = $"formdata/GetRecentPons?selectedTimeFrame={_selectedTimeframe}";
             var response = await Http.GetAsync(url);
-        
+
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -166,13 +155,12 @@ else
             StateHasChanged();
         }
     }
-    
+
     private DateTime CalculatedDateRange(int timeFrame, DateTime today)
     {
         var startDate = DateTime.Now.AddDays(-timeFrame);
         return startDate;
     }
-
 }
 
 <style>
@@ -180,10 +168,22 @@ else
         display: flex;
         justify-content: space-between;  
     }
+    .flex-container1 {
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center; /* Centers vertically */
+    }
+    .table-wrapper {
+        display: flex;
+        justify-content: center;  /* Centers horizontally */
+    }
+    .table-container {
+        width: 75%;
+
+    }
     .table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 1em;
     }
     .table th, .table td {
         border: 1px solid #ddd;
@@ -200,22 +200,6 @@ else
     .table tr:hover {
         background-color: #ddd;
     }
-    .table-container {
-        flex:  1;
-        margin: 0 10px;
-    }
-    .table {
-        width: 50%; /* Adjust based on space and content */
-        margin: 0 10px; /* Provides spacing between tables */
-    }
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px; /* Padding for readability */
-        text-align: left; /* Align text to the left within cells */
-    }
 
     /* Add a dark background with opacity for the modal */
     .modal-backdrop {
@@ -227,11 +211,7 @@ else
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 1040;
     }
-    .flex-container1 {
-        display: flex;
-        justify-content: center; /* Centers horizontally */
-        align-items: center; /* Centers vertically */
-    }
+
     /* Style the modal container */
     .modal-dialog {
         position: fixed;
@@ -240,28 +220,28 @@ else
         transform: translate(-50%, -50%);
         z-index: 1050;
     }
-    
+
     .modal-content {
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .modal-header {
         border-bottom: none;
         padding-bottom: 0;
     }
-    
+
     .modal-title {
         font-size: 1.5rem;
         font-weight: bold;
     }
-    
+
     .modal-body {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    
+
     .modal-body select {
         width: 100%;
         padding: 10px;
@@ -270,14 +250,14 @@ else
         border: 1px solid #ccc;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     }
-    
+
     .modal-footer {
         border-top: none;
         padding-top: 0;
         display: flex;
         justify-content: flex-end;
     }
-    
+
     .modal-footer .btn-primary {
         background-color: #007bff;
         border-color: #007bff;
@@ -286,18 +266,8 @@ else
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .table-container {
-        margin-bottom: 2rem;
-        width: 100%;
-    }
-    .flex-container .table {
-        width: 100%;
-        margin: 0;
-    }
     .header {
         font-weight: lighter;
         margin-bottom: 20px;
     }
-
 </style>
-

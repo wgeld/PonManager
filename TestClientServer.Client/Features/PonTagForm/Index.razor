@@ -155,37 +155,47 @@
         _showConfirmationModal = true;
     }
     
-    /*********************************************************************/
+    /********************************************************************/
     /***** Pass Variables to Server Controller After Confirmation *******/
-    /*******************************************************************/
+    /********************************************************************/
 
     private async Task ConfirmAndSubmit()
     {
         _showConfirmationModal = false;
         //Need to concatenate the splitter card because the Pon Tag Controller consumes the Splitter card as "23.2A"
-        var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter; 
-        var url = $"formdata/PostPon?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
-        var response = await Http.PostAsync(url, null); 
-        if (response.IsSuccessStatusCode)
+        if (_currentEntry.Olt == 0 || _currentEntry.Lt == 0 || _currentEntry.Pon == 0 
+            || _currentEntry.Olt == null || _currentEntry.Lt == null || _currentEntry.Pon == null 
+            || _currentEntry.Fsa == null || _currentEntry.Splitter == null 
+            || _currentEntry.Town == null)
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            if (responseContent.Contains("PON exists ASP2"))
-            {
-                Navigation.NavigateTo("/PonExists");
-            }
-            else if (responseContent.Contains("PON exists WCFEquip"))
-            {
-                Navigation.NavigateTo("/PonExists");
-            }
-            else
-            {
-                var query = $"olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}&";
-                Navigation.NavigateTo($"/confirmation?{query}");
-            }
+            Navigation.NavigateTo("/error");
         }
         else
         {
-            Navigation.NavigateTo("/error");
+            var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter;
+            var url = $"formdata/PostPon?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
+            var response = await Http.PostAsync(url, null);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                if (responseContent.Contains("PON exists ASP2"))
+                {
+                    Navigation.NavigateTo("/PonExists");
+                }
+                else if (responseContent.Contains("PON exists WCFEquip"))
+                {
+                    Navigation.NavigateTo("/PonExists");
+                }
+                else
+                {
+                    var query = $"olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}&";
+                    Navigation.NavigateTo($"/confirmation?{query}");
+                }
+            }
+            else
+            {
+                Navigation.NavigateTo("/error");
+            }
         }
     } 
 }
