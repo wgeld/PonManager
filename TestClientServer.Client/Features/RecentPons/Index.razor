@@ -59,47 +59,35 @@ else
                 <thead>
                 <tr>
                     <th>Created Date</th>
-                    <th>FDH</th>
-                    <th>Card</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-FDH").OrderByDescending(e => e.CreatedDate))
-                {
-                    <tr>
-                        <td>@equipment.CreatedDate.ToString()</td>
-                        <td>@equipment.Fdh</td>
-                        <td>@equipment.SplitterCard</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-        </div>
-
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                <tr>
                     <th>OLT</th>
                     <th>LT</th>
                     <th>PON</th>
+                    <th>Card</th>
+                    <th>FDH</th>
                     <th>Town</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var equipment in _equipmentRecords.Where(e => e.EquClass == "F-OLT").OrderByDescending(e => e.CreatedDate))
+                @foreach (var createdDate in _equipmentRecords.Select(e => e.CreatedDate).Distinct().OrderByDescending(date => date))
                 {
+                    var fdhRecord = _equipmentRecords.FirstOrDefault(e => e.EquClass == "F-FDH" && e.CreatedDate == createdDate);
+                    var oltRecord = _equipmentRecords.FirstOrDefault(e => e.EquClass == "F-OLT" && e.CreatedDate == createdDate);
                     <tr>
-                        <td>@equipment.Olt</td>
-                        <td>@equipment.Lt</td>
-                        <td>@equipment.Pon</td>
-                        <td>@equipment.Town</td>
+                        <td>@createdDate.ToString()</td>
+                        <td>@(oltRecord?.Olt.ToString() ?? "")</td>
+                        <td>@(oltRecord?.Lt.ToString() ?? "")</td>
+                        <td>@(oltRecord?.Pon.ToString() ?? "")</td>
+                        <td>@(fdhRecord?.SplitterCard ?? "")</td>
+                        <td>@(fdhRecord?.Fdh ?? "")</td>
+                        <td>@(oltRecord?.Town ?? "")</td>
                     </tr>
                 }
                 </tbody>
             </table>
         </div>
     </div>
+
+
 }
 
 @code {
