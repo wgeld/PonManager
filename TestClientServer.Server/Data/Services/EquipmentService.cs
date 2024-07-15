@@ -65,7 +65,7 @@ public class EquipmentService : IEquipmentService
             paramIndex++;
         }
 
-        var sql = $"DELETE FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
+        var sql = $"DELETE FROM [wcfMgmt].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
         
         await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
@@ -85,7 +85,7 @@ public class EquipmentService : IEquipmentService
                 CreatedBy, 
                 Town
             FROM 
-                [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+                [wcfMgmt].[dbo].[wcfMgmtEquipments]
             WHERE 
                 EquClass = 'F-FDH' 
                 AND CreatedDate >= @startDate
@@ -117,7 +117,7 @@ public class EquipmentService : IEquipmentService
                     CreatedBy, 
                     Town
                 FROM 
-                    [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+                    [wcfMgmt].[dbo].[wcfMgmtEquipments]
                 WHERE 
                     EquClass = 'F-OLT' 
                     AND CreatedDate >= @startDate

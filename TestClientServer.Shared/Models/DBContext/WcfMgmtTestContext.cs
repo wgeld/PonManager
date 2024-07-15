@@ -18,8 +18,7 @@ public partial class WcfMgmtTestContext : DbContext
     public virtual DbSet<WcfMgmtEquipment> WcfMgmtEquipments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=SQL_Dev1901;Initial Catalog=wcfMgmt_test;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;Integrated security=false;User ID=wcf_app;Password=wcfapp;");
+        => optionsBuilder.UseSqlServer("Data Source=SQLDev01;Initial Catalog=wcfMgmt;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;Integrated security=false;User ID=wcf_app;Password=wcfapp;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
