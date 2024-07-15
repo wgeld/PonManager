@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestClientServer.Server.Data.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -64,12 +65,84 @@ public class EquipmentService : IEquipmentService
             paramIndex++;
         }
 
-        var sql = $"DELETE FROM [wcfMgmt].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
+        var sql = $"DELETE FROM [wcfMgmt_test].[dbo].[wcfMgmtEquipments] WHERE {string.Join(" OR ", conditions)}";
         
         await _context.Database.ExecuteSqlRawAsync(sql, parameters);
     }
+    /*******************************************************************/
+    /********* Get a List of the Recently Created Pons  ****************/
+    /*******************************************************************/
+    public async Task<List<WcfMgmtEquipment?>> GetRecentPonRecords(int recentTimeFrame)
+    {
+        DateTime startDate = DateTime.Now.AddDays(-recentTimeFrame);
+    
+        string fdhSql = @"
+            SELECT 
+                EquClass, 
+                Fdh, 
+                SplitterCard,  
+                MAX(CreatedDate) AS CreatedDate, 
+                CreatedBy, 
+                Town
+            FROM 
+                [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+            WHERE 
+                EquClass = 'F-FDH' 
+                AND CreatedDate >= @startDate
+            GROUP BY 
+                EquClass, Fdh, SplitterCard, CreatedBy, Town";
 
+        var parameters = new[] { new SqlParameter("@startDate", startDate) };
 
+        var fdhResults = await _context.Set<WcfMgmtEquipment>()
+            .FromSqlRaw(fdhSql, parameters)
+            .Select(e => new WcfMgmtEquipment
+            {
+                EquClass = e.EquClass,
+                Fdh = e.Fdh,
+                SplitterCard = e.SplitterCard,
+                CreatedDate = e.CreatedDate,
+                CreatedBy = e.CreatedBy,
+                Town = e.Town
+            })
+            .ToListAsync();
+
+        string oltSql = @"
+                SELECT 
+                    EquClass, 
+                    Olt, 
+                    Lt, 
+                    Pon, 
+                    MAX(CreatedDate) AS CreatedDate, 
+                    CreatedBy, 
+                    Town
+                FROM 
+                    [wcfMgmt_test].[dbo].[wcfMgmtEquipments]
+                WHERE 
+                    EquClass = 'F-OLT' 
+                    AND CreatedDate >= @startDate
+                GROUP BY 
+                    EquClass, Olt, Lt, Pon, CreatedBy, Town";
+        
+        var oltParameters = new[] { new SqlParameter("@startDate", startDate) };
+        
+        var oltResults = await _context.Set<WcfMgmtEquipment>()
+            .FromSqlRaw(oltSql, oltParameters)
+            .Select(e => new WcfMgmtEquipment
+            {
+                EquClass = e.EquClass,
+                Olt = e.Olt,
+                Lt = e.Lt,
+                Pon = e.Pon,
+                CreatedDate = e.CreatedDate,
+                CreatedBy = e.CreatedBy,
+                Town = e.Town
+            })
+            .ToListAsync();
+
+        return fdhResults.Concat(oltResults).ToList();
+    }
+    
     /*******************************************************************/
     /********* Add List of Equipment Records to WCFEquip Table *********/
     /*******************************************************************/

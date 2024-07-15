@@ -46,6 +46,24 @@ namespace TestClientServer.Server.Controllers;
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request: " + ex.Message);
             }
         }
+        
+        /*******************************************************************/
+        /******* Check WCFEquipments to Get Recent PON Paths Created *******/
+        /*******************************************************************/
+        [HttpGet("GetRecentPons")]
+        public async Task<IActionResult> GetNewPonRecords(int selectedTimeFrame)
+        {
+            try
+            {
+                var recentPonRecords = await equipmentService.GetRecentPonRecords(selectedTimeFrame);
+                return Ok(recentPonRecords);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
+        }
+
         /*******************************************************************/
         /*********** Get Newly Created Equipment Records from Table ********/
         /*******************************************************************/
