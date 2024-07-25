@@ -1,0 +1,354 @@
+﻿@page "/Search"
+@using TestClientServer.Shared.Models.Client
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>PonLightUp</PageTitle>
+
+    @*******************************************************************/
+    /************** Display Form for PON Tag Input *********************/
+    /*******************************************************************@
+
+    <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
+        <div class="half-width-form-control">
+            <h2>Enter Customer Path Info:</h2>
+        </div>
+
+        <div class="form-group half-width-form-control">
+            <label for="town">Town:</label>
+            <InputSelect id="town" @bind-Value="_currentEntry.Town" class="half-width-input">
+                @foreach (var option in _townOptions)
+                {
+                <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="form-group half-width-form-control">
+            <label for="olt">OLT:</label>
+            <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-input">
+                @foreach (var option in _oltOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+    
+        <div class="form-group half-width-form-control">
+            <label for="lt">LT:</label>
+            <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-input">
+                @foreach (var option in _ltOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+    
+        <div class="form-group half-width-form-control">
+            <label for="pon">PON:</label>
+            <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-input">
+                @foreach (var option in _ponOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+    
+        <div class="form-group half-width-form-control">
+            <label for="fsa">FSA:</label>
+            <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
+        </div>
+    
+        <div class="form-group half-width-form-control">
+            <label for="splitter">Splitter:</label>
+            <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-input">
+                @foreach (var option in _splitterOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+
+        <br/>
+        <button class="button-64" role="button"><span class="text">Submit</span></button>
+        <div class ="mt-3">
+        </div>
+    
+    </EditForm>
+    
+    
+@if (_showConfirmationModal)
+{
+<div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirm Submission:</h2>
+                <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><strong>Town:</strong></td>
+                        <td>@_currentEntry.Town</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OLT:</strong></td>
+                        <td>@_currentEntry.Olt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LT:</strong></td>
+                        <td>@_currentEntry.Lt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PON:</strong></td>
+                        <td>@_currentEntry.Pon</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FSA:</strong></td>
+                        <td>@_currentEntry.Fsa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Splitter:</strong></td>
+                        <td>@_currentEntry.Splitter</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Edit</button>
+                <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@code {
+    private readonly FormData _currentEntry = new();
+    private bool _showConfirmationModal;
+    
+    /*********************************************************************/
+    /*********** Pre-set Field Selections for Input Form ****************/
+    /*******************************************************************/
+        
+    private readonly List<int> _oltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
+    private readonly List<int> _ltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
+    private readonly List<int> _ponOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
+    //Remove Testing for Production Release
+    private readonly List<string> _townOptions = new List<string>
+    {   
+        " ",
+        "ALFORD",
+        "ASHFIELD",
+        "BECKET",
+        "BLANDFORD",
+        "CHARLEMONT",
+        "CHESTERFIELD",
+        "COLRAIN",
+        "CUMMINGTON",
+        "GOSHEN",
+        "HEATH",
+        "LEYDEN",
+        "NEW ASHFORD",
+        "NEW SALEM",
+        "NULL",
+        "OTIS",
+        "PLAINFIELD",
+        "ROWE",
+        "TESTING",
+        "WASHINGTON",
+        "WENDELL",
+        "WESTFIELD",
+        "WESTSPRINGFIELD",
+        "WINDSOR"
+    };
+    
+    private readonly List<string> _splitterOptions = [" ", "1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A",
+                                                        "9A", "10A", "11A", "12A", "13A", "14A", "15A", "16A",
+                                                        "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B",
+                                                        "9B", "10B", "11B", "12B", "13B", "14B", "15B", "16B"];
+    
+    private void   ShowConfirmationModal()
+    {
+        _showConfirmationModal = true;
+    }
+    
+    /********************************************************************/
+    /***** Pass Variables to Server Controller After Confirmation *******/
+    /********************************************************************/
+
+    private async Task ConfirmAndSubmit()
+    {
+        _showConfirmationModal = false;
+        
+            //Need to concatenate the splitter card because the Pon Tag Controller consumes the Splitter card as "23.2A"
+            var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter;
+            var url = $"formdata/SearchPon?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
+            var response = await Http.PostAsync(url, null);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                if (responseContent.Contains("PON exists ASP2"))
+                {
+                    Navigation.NavigateTo("/PonExists");
+                }
+                else if (responseContent.Contains("PON exists WCFEquip"))
+                {
+                    Navigation.NavigateTo("/PonExists");
+                }
+                else
+                {
+                    var query = $"olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={Uri.EscapeDataString(_currentEntry.Fsa)}&splitter={Uri.EscapeDataString(_currentEntry.Splitter)}&";
+                    Navigation.NavigateTo($"/confirmation?{query}");
+                }
+            }
+            else
+            {
+                Navigation.NavigateTo("/error");
+            }
+        
+    } 
+}
+
+
+<style>
+    .modal-header {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table tbody + tbody {
+        border-top: 2px solid #dee2e6;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .btn {
+        margin-left: 10px;
+    }
+
+h2 {
+        font-size: 24px; 
+        color: #333; 
+        text-align: left; 
+        padding: 5px 0;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif; 
+        margin-top: 5px; 
+    }
+    
+    .half-width-form-control {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin-top: 0.5rem;
+        background: #fff;
+        padding: 0.5rem;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .half-width-form-control label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .half-width-form-control input {
+        padding: 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s, outline 0.3s, box-shadow 0.3s;
+    }
+
+    .half-width-form-control input:focus {
+        border-color: #28a745;
+        outline: 2px solid #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    .half-width-form-control select, .half-width-form-control input {
+        padding: 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s, outline 0.3s, box-shadow 0.3s;
+    }
+
+    .half-width-form-control select:focus, .half-width-form-control input:focus {
+        border-color: #28a745;
+        outline: 2px solid #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    .button-64 {
+        align-items: center;
+        background-image: linear-gradient(144deg,#592B83,#AE70E7 25%, #9CDC62 75%,#79FF00);
+        border: 0;
+        border-radius: 8px;
+        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        display: flex;
+        font-family: Phantomsans, sans-serif;
+        font-size: 20px;
+        justify-content: center;
+        line-height: 1em;
+        max-width: 100%;
+        min-width: 140px;
+        padding: 3px;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+    .button-64:active,
+    .button-64:hover {
+        outline: 0;
+    }
+    .button-64 span {
+        background-color: rgb(89, 43, 131);
+        padding: 16px 24px;
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        transition: 300ms;
+    }
+    .button-64:hover span {
+        background: none;
+    }
+</style>
+
