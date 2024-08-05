@@ -15,8 +15,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group half-width-form-control-input">
-                        <label for="town">Town:</label>
-                        <InputSelect id="town" @bind-Value="_selectedTown" class="half-width-form-control-input">
+                        <InputSelect id="town" @bind-Value="_selectedTown" class="form-select wide-dropdown">
                             @foreach (var option in _townOptions)
                             {
                                 <option value="@option">@option</option>
@@ -257,24 +256,23 @@ else
     .center-button {
         margin: 0 auto;
     }
-
     .btn-sm {
         padding: 0.25rem 0.5rem;
         font-size: 0.875rem;
         line-height: 1.5;
         border-radius: 0.2rem;
     }
-    
     .text-center {
         text-align: center;
     }
-
     .modal-header {
         background-color: #f5f5f5;
         padding: 15px;
         border-bottom: 1px solid #ddd;
     }
-
+    .wide-dropdown {
+        width: 100%; /* Adjust the width as needed */
+    }
     .modal-header h2 {
         margin: 0;
     }
