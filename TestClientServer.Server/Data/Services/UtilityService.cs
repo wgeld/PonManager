@@ -2,7 +2,6 @@
 using TestClientServer.Shared.Models.Server;
 
 namespace TestClientServer.Server.Data.Services;
-
 public class UtilityService : IUtilityService
 {
     /*******************************************************************/
