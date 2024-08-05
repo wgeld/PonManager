@@ -11,7 +11,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">Select PON Tag Town</h2>
+                    <h2 class="modal-title">Select Town:</h2>
                 </div>
                 <div class="modal-body">
                     <div class="form-group half-width-form-control-input">
@@ -25,7 +25,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" @onclick="OnTownSelected">Select</button>
+                    <div class="d-flex justify-content-between w-100">
+                        <button class="btn btn-primary" @onclick="NavigateToHomepage">Exit</button>
+                        <button class="btn btn-success" @onclick="OnTownSelected">Select</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,15 +39,17 @@ else
     <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
         <DataAnnotationsValidator/>
         <ValidationSummary/>
-        <div class="half-width-form-control text-center">
-            <h2>Enter PON Details:</h2>
-        </div>
-        <br/>
-        <button class="btn btn-primary btn-sm center-button" @onclick="() => _showTownSelectionModal = true">Edit Town</button>
+        
         <div class="form-group half-width-form-control text-center">
+            <button class="btn btn-primary btn-sm center-button" @onclick="() => _showTownSelectionModal = true">Edit Town</button>
             @* <label for="town" class="d-block mt-2">Town:</label> *@
             <h2>@_currentEntry.Town</h2>
         </div>
+        
+        @* <div class="half-width-form-control text-center"> *@
+        @*     <h2>Enter PON Details:</h2> *@
+        @* </div> *@
+        @* *@
         <div class="form-group half-width-form-control">
             <label for="olt" class="custom-label">OLT:</label>
             <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-input">
@@ -127,21 +132,23 @@ else
                             <td>@_currentEntry.Pon</td>
                         </tr>
                         <tr>
-                            <td><strong>FSA:</strong></td>
-                            <td>@_currentEntry.Fsa</td>
-                        </tr>
-                        <tr>
                             <td><strong>Splitter:</strong></td>
                             <td>@_currentEntry.Splitter</td>
                         </tr>
+                        <tr>
+                            <td><strong>FSA:</strong></td>
+                            <td>@_currentEntry.Fsa</td>
+                        </tr>
+
 
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Edit</button>
-                    <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
-
+                    <div class="d-flex justify-content-between w-100">
+                        <button class="btn btn-primary" @onclick="() => _showConfirmationModal = false">Edit</button>
+                        <button class="btn btn-success" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -169,7 +176,10 @@ else
             _showTownSelectionModal = false;
         }
     }
-
+    private void NavigateToHomepage()
+    {
+        Navigation.NavigateTo("/");
+    }
     private void UpdateFormOptionsBasedOnTown(string? selectedTown)
     {
         if (selectedTown == "Westfield")
@@ -177,10 +187,10 @@ else
             _oltOptions = [1,2,3,4,5,6,7,8,9,10];
             _ltOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
             _ponOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-            _splitterOptions = [" ", "1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", 
-                                "5A", "5B", "6A", "6B", "7A", "7B", "8A", "8B", 
-                                "9A", "9B", "10A", "10B", "11A", "11B", "12A", "12B", 
-                                "13A", "13B", "14A", "14B", "15A", "15B", "16A", "16B"];
+            _splitterOptions = [" ", "1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A",
+                                "9A", "10A", "11A", "12A", "13A", "14A", "15A", "16A",
+                                "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B",
+                                "9B", "10B", "11B", "12B", "13B", "14B", "15B", "16B"];
             _selectedTown = selectedTown;
         }
         else if (selectedTown == "WestSpringfield")
