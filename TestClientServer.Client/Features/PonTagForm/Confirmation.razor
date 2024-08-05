@@ -33,7 +33,7 @@
                 <tbody>
                 @foreach (var equipment in _equipmentRecords)
                 {
-                    if (equipment?.EquId.StartsWith("F") == true)
+                    if (equipment?.EquId?.StartsWith("F") == true || equipment?.EquId?.StartsWith("WS-") == true)
                     {
                         <tr>
                             <td>@equipment.EquClass</td>
@@ -64,7 +64,7 @@
                 <tbody>
                 @foreach (var equipment in _equipmentRecords)
                 {
-                    if (equipment?.EquId.StartsWith("N") == true)
+                    if ((equipment?.EquId?.StartsWith("N") == true || (equipment?.EquId.StartsWith("WS") == true && !equipment?.EquId.StartsWith("WS-") == true)))
                     {
                         <tr>
                             <td>@equipment.EquClass</td>

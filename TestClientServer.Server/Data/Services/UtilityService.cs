@@ -7,16 +7,26 @@ public class UtilityService : IUtilityService
     /*******************************************************************/
     /********* Create the Equipment ID for an ONT Path *****************/
     /*******************************************************************/
-    public string CreateEquipIdOnt(int olt, int lt, int pon, int nextAvailOnt)
+    public string CreateEquipIdOnt(int olt, int lt, int pon, int nextAvailOnt, string town)
     {
-        return $"N{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}";
+        return town switch
+        {
+            "Westfield" => $"N{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
+            "WestSpringfield" => $"WS{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
+            _ => throw new ArgumentException("Invalid town specified")
+        };
     }
     /*******************************************************************/
     /********* Create the Equipment ID for a FDH Path ******************/
     /*******************************************************************/
-    public string CreateEquipIdFdh(string fdh, string splitterCard, int splitterTail)
+    public string CreateEquipIdFdh(string fdh, string splitterCard, int splitterTail, string town)
     {
-        return $"F{fdh}.{splitterCard}.{splitterTail:00}";
+        return town switch
+        {
+            "Westfield" => $"F{fdh}.{splitterCard}.{splitterTail:00}",
+            "WestSpringfield" => $"WS-{fdh}.{splitterCard}.{splitterTail:00}",
+            _ => throw new ArgumentException("Invalid town specified")
+        };
     }
     /*******************************************************************/
     /******** Split the Splitter Input to get the SplitterCard *********/
@@ -87,8 +97,8 @@ public class UtilityService : IUtilityService
     {
         var ponPath = CreatePonPath(olt, lt, pon);
         var splitterCard = CreateSplitterCard(splitter);
-        var nextOntEquipId = CreateEquipIdOnt(olt, lt, pon, 1);
-        var nextTailEquipId = CreateEquipIdFdh(fdh, splitterCard, 1);
+        var nextOntEquipId = CreateEquipIdOnt(olt, lt, pon, 1, town);
+        var nextTailEquipId = CreateEquipIdFdh(fdh, splitterCard, 1, town);
         var newPonPath = new AvailableSignalPorts2
         {
             Olt = olt,

@@ -95,7 +95,7 @@ namespace TestClientServer.Server.Controllers;
                 var deleteRecords = new List<WcfMgmtEquipment?>();
                 for (var i = 1; i <= 16; i++)
                 {
-                    var equipIdOnt = utilityService.CreateEquipIdOnt(olt, lt, pon, i);
+                    var equipIdOnt = utilityService.CreateEquipIdOnt(olt, lt, pon, i, town);
                     var ontRecord = new WcfMgmtEquipment
                     {
                         EquId = equipIdOnt,
@@ -103,7 +103,7 @@ namespace TestClientServer.Server.Controllers;
                     };
                     deleteRecords.Add(ontRecord);
                 
-                    var equipIdFdh = utilityService.CreateEquipIdFdh(fdh, splitterCard, i);
+                    var equipIdFdh = utilityService.CreateEquipIdFdh(fdh, splitterCard, i, town);
                     var fdhRecord = new WcfMgmtEquipment
                     {
                         EquId = equipIdFdh,
@@ -173,7 +173,7 @@ namespace TestClientServer.Server.Controllers;
         /*******************************************************************/
     private WcfMgmtEquipment? CreateOntPath(int olt, int lt, int pon, int nextAvailOnt, string town)
     {
-        var ontEquId = utilityService.CreateEquipIdOnt(olt, lt, pon, nextAvailOnt);
+        var ontEquId = utilityService.CreateEquipIdOnt(olt, lt, pon, nextAvailOnt, town);
         return utilityService.CreateOntPathWcfMgmtEquipment(olt, lt, pon, town, ontEquId, nextAvailOnt);
     }
         /*******************************************************************/
@@ -182,7 +182,7 @@ namespace TestClientServer.Server.Controllers;
     private WcfMgmtEquipment? CreateFdhPath(string fdh, string splitter, int splitterTail, string town)
     {
         var fdhSplitterCard = utilityService.CreateSplitterCard(splitter);
-        var fdhEquId = utilityService.CreateEquipIdFdh(fdh, fdhSplitterCard, splitterTail);
+        var fdhEquId = utilityService.CreateEquipIdFdh(fdh, fdhSplitterCard, splitterTail, town);
         return utilityService.CreateFdhPathWcfMgmtEquipment(fdh, town, fdhSplitterCard, fdhEquId, splitterTail);
     }
 }

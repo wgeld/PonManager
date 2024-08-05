@@ -4,96 +4,116 @@
 @inject NavigationManager Navigation
 
 <PageTitle>PonLightUp</PageTitle>
-    @*******************************************************************/
-    /************** Display Form for PON Tag Input *********************/
-    /*******************************************************************@
 
-<EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
-    <DataAnnotationsValidator/>
-    <ValidationSummary/>
-    <div class="half-width-form-control">
-        <h2>Enter PON Details:</h2>
+@if (_showTownSelectionModal)
+{
+    <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Select PON Tag Town</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group half-width-form-control-input">
+                        <label for="town">Town:</label>
+                        <InputSelect id="town" @bind-Value="_selectedTown" class="half-width-form-control-input">
+                            @foreach (var option in _townOptions)
+                            {
+                                <option value="@option">@option</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" @onclick="OnTownSelected">Select</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group half-width-form-control">
-        <label for="olt">OLT:</label>
-        <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-input">
-            @foreach (var option in _oltOptions)
-            {
+}
+else
+{
+    <EditForm Model="@_currentEntry" OnValidSubmit="ShowConfirmationModal">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="half-width-form-control text-center">
+            <h2>Enter PON Details:</h2>
+        </div>
+        <br/>
+        <button class="btn btn-primary btn-sm center-button" @onclick="() => _showTownSelectionModal = true">Edit Town</button>
+        <div class="form-group half-width-form-control text-center">
+            @* <label for="town" class="d-block mt-2">Town:</label> *@
+            <h2>@_currentEntry.Town</h2>
+        </div>
+        <div class="form-group half-width-form-control">
+            <label for="olt" class="custom-label">OLT:</label>
+            <InputSelect id="olt" @bind-Value="_currentEntry.Olt" class="half-width-input">
+                @foreach (var option in _oltOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+        
+        <div class="form-group half-width-form-control">
+            <label for="lt" class="custom-label">LT:</label>
+            <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-input">
+                @foreach (var option in _ltOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+        
+        <div class="form-group half-width-form-control">
+            <label for="pon" class="custom-label">PON:</label>
+            <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-input">
+                @foreach (var option in _ponOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="form-group half-width-form-control">
+            <label for="splitter" class="custom-label">Splitter:</label>
+            <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-input">
+                @foreach (var option in _splitterOptions)
+                {
                 <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-    
-    <div class="form-group half-width-form-control">
-        <label for="lt">LT:</label>
-        <InputSelect id="lt" @bind-Value="_currentEntry.Lt" class="half-width-input">
-            @foreach (var option in _ltOptions)
-            {
-                <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-    
-    <div class="form-group half-width-form-control">
-        <label for="pon">PON:</label>
-        <InputSelect id="pon" @bind-Value="_currentEntry.Pon" class="half-width-input">
-            @foreach (var option in _ponOptions)
-            {
-                <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-    
-    <div class="form-group half-width-form-control">
-        <label for="fsa">FSA:</label>
-        <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
-    </div>
-    
-    <div class="form-group half-width-form-control">
-        <label for="splitter">Splitter:</label>
-        <InputSelect id="splitter" @bind-Value="_currentEntry.Splitter" class="half-width-input">
-            @foreach (var option in _splitterOptions)
-            {
-                <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-
-    <div class="form-group half-width-form-control">
-        <label for="town">Town:</label>
-        <InputSelect id="town" @bind-Value="_currentEntry.Town" class="half-width-input">
-            @foreach (var option in _townOptions)
-            {
-                <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
-    <br/>
+                }
+            </InputSelect>
+        </div>
+        
+        <div class="form-group half-width-form-control">
+            <label for="fsa" class="custom-label">FSA:</label>
+            <InputText id="fsa" @bind-Value="_currentEntry.Fsa" class="half-width-input" />
+        </div>
+        
+        <br/>
         <button class="button-64" role="button"><span class="text">Submit</span></button>
-    <div class ="mt-3">
-    </div>
-    
-</EditForm>
+        <div class ="mt-3"></div>
 
-    @********************************************************************/
-    /*********** User Submission Confirmation Modal ********************/
-    /*******************************************************************@
+    </EditForm>
+}
 
 @if (_showConfirmationModal)
 {
-<div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Confirm Submission:</h2>
-                <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered">
-                    <tbody>
-
+    <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Confirm Submission:</h2>
+                    <button type="button" class="close" @onclick="() => _showConfirmationModal = false">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td><strong>Town:</strong></td>
+                            <td>@_currentEntry.Town</td>
+                        </tr>
                         <tr>
                             <td><strong>OLT:</strong></td>
                             <td>@_currentEntry.Olt</td>
@@ -114,48 +134,73 @@
                             <td><strong>Splitter:</strong></td>
                             <td>@_currentEntry.Splitter</td>
                         </tr>
-                        <tr>
-                            <td><strong>Town:</strong></td>
-                            <td>@_currentEntry.Town</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Edit</button>
-                <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="() => _showConfirmationModal = false">Edit</button>
+                    <button class="btn btn-primary" @onclick="ConfirmAndSubmit">Confirm and Submit</button>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 }
 
 @code {
     private readonly FormData _currentEntry = new();
+    private bool _showTownSelectionModal = true;
     private bool _showConfirmationModal;
+    private string? _selectedTown;
+
+    private List<int>? _oltOptions;
+    private List<int>? _ltOptions;
+    private List<int>? _ponOptions; 
+    private readonly List<string> _townOptions = [" ", "Westfield", "WestSpringfield"]; 
+    private List<string>? _splitterOptions;
     
-    /*********************************************************************/
-    /*********** Pre-set Field Selections for Input Form ****************/
-    /*******************************************************************/
-        
-    private readonly List<int> _oltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10];
-    private readonly List<int> _ltOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
-    private readonly List<int> _ponOptions = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16];
-    //Remove Testing for Production Release
-    private readonly List<string> _townOptions = [" ", "Westfield", "WestSpringfield"];
-    private readonly List<string> _splitterOptions = [" ", "1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A",
-                                                        "9A", "10A", "11A", "12A", "13A", "14A", "15A", "16A",
-                                                        "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B",
-                                                        "9B", "10B", "11B", "12B", "13B", "14B", "15B", "16B"];
-    
-    private void   ShowConfirmationModal()
+    private void OnTownSelected()
+    {
+        if (!string.IsNullOrEmpty(_selectedTown) && _selectedTown != " ")
+        {
+            _currentEntry.Town = _selectedTown;
+            UpdateFormOptionsBasedOnTown(_selectedTown);
+            _showTownSelectionModal = false;
+        }
+    }
+
+    private void UpdateFormOptionsBasedOnTown(string? selectedTown)
+    {
+        if (selectedTown == "Westfield")
+        {
+            _oltOptions = [1,2,3,4,5,6,7,8,9,10];
+            _ltOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            _ponOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            _splitterOptions = [" ", "1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", 
+                                "5A", "5B", "6A", "6B", "7A", "7B", "8A", "8B", 
+                                "9A", "9B", "10A", "10B", "11A", "11B", "12A", "12B", 
+                                "13A", "13B", "14A", "14B", "15A", "15B", "16A", "16B"];
+            _selectedTown = selectedTown;
+        }
+        else if (selectedTown == "WestSpringfield")
+        {
+            _oltOptions = [1,2,3,4,5,6,7,8,9,10];
+            _ltOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            _ponOptions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            _splitterOptions = [" ", "01", "02", "03", "04", "05", "06", "07", "08", 
+                                "09", "10", "11", "12", "13", "14", "15", "16", 
+                                "17", "18", "19", "20", "21", "22", "23", "24", 
+                                "25", "26", "27", "28", "29", "30", "31", "32"];
+            _selectedTown = selectedTown; 
+        }
+        StateHasChanged();
+    }
+
+    private void ShowConfirmationModal()
     {
         _showConfirmationModal = true;
     }
-    
-    /********************************************************************/
-    /***** Pass Variables to Server Controller After Confirmation *******/
-    /********************************************************************/
 
     private async Task ConfirmAndSubmit()
     {
@@ -170,7 +215,6 @@
         }
         else
         {
-            //Need to concatenate the splitter card because the Pon Tag Controller consumes the Splitter card as "23.2A"
             var splitterCard = _currentEntry.Fsa + "." + _currentEntry.Splitter;
             var url = $"formdata/PostPon?olt={_currentEntry.Olt}&lt={_currentEntry.Lt}&pon={_currentEntry.Pon}&town={_currentEntry.Town}&fdh={_currentEntry.Fsa}&splitter={splitterCard}";
             var response = await Http.PostAsync(url, null);
@@ -198,11 +242,23 @@
         }
     } 
 }
-    @*********************************************************************/
-    /********************* Styling for Page Layout  *********************/
-    /*******************************************************************@
 
 <style>
+    .center-button {
+        margin: 0 auto;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+
     .modal-header {
         background-color: #f5f5f5;
         padding: 15px;
@@ -240,19 +296,30 @@
         padding: 10px;
         border-top: 1px solid #dee2e6;
     }
+    .custom-label {
+        font-size: 15px;
+        color: #333;
+        text-align: left;
+        padding: 3px 0;
+        font-weight: bold;
+        font-family: sans-serif;
+        margin-top: 3px;
+        display: block; /* Ensure the label takes up full width */
+    }
+
 
     .btn {
         margin-left: 10px;
     }
 
-h2 {
-        font-size: 24px; 
+    h2 {
+        font-size: 22px; 
         color: #333; 
-        text-align: left; 
-        padding: 5px 0;
+        text-align: center; 
+        padding: 3px 0;
         font-weight: bold;
-        font-family: 'Roboto', sans-serif; 
-        margin-top: 5px; 
+        font-family:  sans-serif; 
+        margin-top: 3px; 
     }
     
     .half-width-form-control {
@@ -335,5 +402,3 @@ h2 {
         background: none;
     }
 </style>
-
-

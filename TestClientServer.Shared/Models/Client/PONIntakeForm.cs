@@ -19,7 +19,7 @@ public class FormData
             }
         }
     }
-    public string Town { get; set; }
+    public string? Town { get; set; }
     public int Olt { get; set; }
     public int Pon { get; set; }
     public int Lt { get; set; }
