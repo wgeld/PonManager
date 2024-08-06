@@ -13,6 +13,8 @@ public class UtilityService : IUtilityService
         {
             "Westfield" => $"N{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
             "WestSpringfield" => $"WS{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
+            "Southwick" => $"SW{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
+            "EastLongmeadow" => $"EL{olt:00}.{lt:00}.{pon:00}.{nextAvailOnt:00}",
             _ => throw new ArgumentException("Invalid town specified")
         };
     }
@@ -25,6 +27,8 @@ public class UtilityService : IUtilityService
         {
             "Westfield" => $"F{fdh}.{splitterCard}.{splitterTail:00}",
             "WestSpringfield" => $"WS-{fdh}.{splitterCard}.{splitterTail:00}",
+            "Southwick" => $"SW-{fdh}.{splitterCard}.{splitterTail:00}",
+            "EastLongmeadow" => $"EL-{fdh}.{splitterCard}.{splitterTail:00}",
             _ => throw new ArgumentException("Invalid town specified")
         };
     }
